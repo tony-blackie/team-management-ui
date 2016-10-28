@@ -5,9 +5,19 @@
 
     function teamList() {
         var directive = {
-            template: '<div>{{five}}</div>',
+            templateUrl: '../common/features/team-list/team-list.html',
             link: function(scope, element, attrs) {
-                scope.five = 5;
+                scope.teams = [
+                    {
+                        name: "Team One"
+                    },
+                    {
+                        name: "Avengers"
+                    },
+                    {
+                        name: "Suicide Squad"
+                    }
+                ];
             },
             restrict: 'E'
         };
