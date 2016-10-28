@@ -30,15 +30,31 @@
 
                 scope.teams = [
                     {
-                        name: "Avengers",
+                        name: "Friends",
                         members: [
                             {
-                                name: 'Bruce Wayne',
-                                job: 'driver'
+                                name: 'Ross Gellar',
+                                job: 'paleonthologist'
                             },
                             {
-                                name: 'Harley Quinn',
-                                job: 'entertainment manager'
+                                name: 'Chandler Bing',
+                                job: 'accountant'
+                            },
+                            {
+                                name: 'Joey Tribiani',
+                                job: 'actor'
+                            },
+                            {
+                                name: 'Rachel Green',
+                                job: 'fashion designer'
+                            },
+                            {
+                                name: 'Monika Gellar',
+                                job: 'shef'
+                            },
+                            {
+                                name: 'Phoebe Buffay',
+                                job: 'masseuse'
                             }
                         ],
                         areTeamMembersShown: false
@@ -66,8 +82,25 @@
                         areTeamMembersShown: false
                     },
                     {
-                        name: "Team One",
-                        members: [],
+                        name: "True Detective",
+                        members: [
+                            {
+                                name: 'Ray Velcoro',
+                                job: 'detective'
+                            },
+                            {
+                                name: 'Frank Semyon',
+                                job: 'businessman'
+                            },
+                            {
+                                name: 'Ani Bezzerides',
+                                job: 'detective'
+                            },
+                            {
+                                name: 'Paul Woodrugh',
+                                job: 'detective'
+                            }
+                        ],
                         areTeamMembersShown: false
                     }
                 ];
