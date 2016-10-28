@@ -1,7 +1,7 @@
 <div class="team-container">
     <div class="team-add-team">
         <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
-        <button class="team-add-button" ng-class="addTeam()">+</button>
+        <button class="team-add-button" ng-click="addTeam()">+</button>
         <div class="team-name">{{teamName}}</div>
     </div>
     <div class="team-wrapper" ng-repeat="team in teams">

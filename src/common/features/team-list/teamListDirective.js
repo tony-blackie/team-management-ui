@@ -8,12 +8,20 @@
             templateUrl: '../common/features/team-list/team-list.html',
             link: function(scope, element, attrs) {
 
-                window.scope = scope;
-
-                //scope.teamName = "";
+                window.scope = scope; //TODO: Remove
 
                 scope.addTeam = function() {
+                    if (!scope.teamName) {
+                        return;
+                    }
+                    scope.teams.push(
+                        {
+                            name: scope.teamName,
+                            members: [],
+                            areTeamMembersShown: false
 
+                        }
+                    );
                 };
 
                 scope.showDropdown = function(index) {
