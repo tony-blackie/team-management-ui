@@ -11,9 +11,17 @@
                 window.scope = scope; //TODO: Remove
 
                 scope.addTeam = function() {
-                    if (!scope.teamName) {
+                    var stringContainsSpecialCharacters = false;
+                    angular.forEach(scope.teamName.split(''), function(char) {
+                        if (char.search(/[a-z0-9 ]+/) === -1) {
+                            stringContainsSpecialCharacters = true;
+                        }
+                    });
+
+                    if (!scope.teamName || scope.teamName.length < 1 || stringContainsSpecialCharacters) {
                         return;
                     }
+
                     scope.teams.push(
                         {
                             name: scope.teamName,
