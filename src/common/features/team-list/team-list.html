@@ -1,3 +1,15 @@
-<div ng-repeat="team in teams">
-    <div>{{team.name}}</div>
+<div class="team-container">
+    <div class="team-add-team">
+        <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
+        <button class="team-add-button" ng-class="addTeam()">+</button>
+        <div class="team-name">{{teamName}}</div>
+    </div>
+    <div class="team-wrapper" ng-repeat="team in teams">
+        <div class="team-name" ng-click="showDropdown($index)">{{team.name}}</div>
+        <div class="member-wrapper" ng-show="team.areTeamMembersShown">
+            <div class="member" ng-repeat="member in team.members">
+                <div class="member_item">{{member.name}} - {{member.job}}</div>
+            </div>
+        </div>
+    </div>
 </div>
