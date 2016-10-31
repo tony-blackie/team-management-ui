@@ -20,13 +20,18 @@
 
                 scope.addTeam = function() {
                     var stringContainsSpecialCharacters = false;
+
+                    if (!scope.teamName || scope.teamName.length < 1) {
+                        return;
+                    }
+
                     angular.forEach(scope.teamName.split(''), function(char) {
                         if (char.search(/[a-z0-9 ]+/) === -1) {
                             stringContainsSpecialCharacters = true;
                         }
                     });
 
-                    if (!scope.teamName || scope.teamName.length < 1 || stringContainsSpecialCharacters) {
+                    if (stringContainsSpecialCharacters) {
                         return;
                     }
 
