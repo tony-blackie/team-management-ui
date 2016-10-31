@@ -4,9 +4,7 @@
 
 ## Getting Started
 
-Clone the angular-seed repository and install the dependencies:
-
-### Clone angular-seed
+Clone the repository and install the dependencies:
 
 ```
 git clone https://github.com/tony-blackie/team-management-ui.git
