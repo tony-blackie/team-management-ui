@@ -81,5 +81,26 @@ describe('teamListDirective tests', function() {
         expect(scope.addTeam).toHaveBeenCalled();
     });
 
+    it('should pass validation and add one team', function() {
+        scope.teams = [
+            {
+                name: 'team1',
+                members: [],
+                isActive: true
+            },
+            {
+                name: 'team2',
+                members: [],
+                isActive: false
+            }
+        ];
+
+        scope.teamName = "1337";
+
+        element.find('.team-add-button').click();
+
+        expect(scope.teams.length).toBe(3);
+    });
+
 });
 
