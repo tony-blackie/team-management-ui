@@ -10,6 +10,14 @@
 
                 window.scope = scope; //TODO: Remove
 
+                function deselectAllOtherTeams(index) {
+                    angular.forEach(scope.teams, function(team, i) {
+                        if(team.isActive && i !== index) {
+                            scope.teams[i].isActive = false;
+                        }
+                    });
+                }
+
                 scope.addTeam = function() {
                     var stringContainsSpecialCharacters = false;
                     angular.forEach(scope.teamName.split(''), function(char) {
@@ -26,14 +34,15 @@
                         {
                             name: scope.teamName,
                             members: [],
-                            areTeamMembersShown: false
+                            isActive: false
 
                         }
                     );
                 };
 
-                scope.showDropdown = function(index) {
-                    scope.teams[index].areTeamMembersShown = !scope.teams[index].areTeamMembersShown
+                scope.makeActive = function(index) {
+                    scope.teams[index].isActive = !scope.teams[index].isActive;
+                    deselectAllOtherTeams(index);
                 };
 
                 scope.teams = [
@@ -65,29 +74,29 @@
                                 job: 'masseuse'
                             }
                         ],
-                        areTeamMembersShown: false
+                        isActive: false
                     },
                     {
                         name: "Big Bang",
                         members: [
                             {
                                 name: 'Sheldon Cooper',
-                                job: 'theoretical physisyst'
+                                job: 'theoretical physicist'
                             },
                             {
                                 name: 'Leonard Hoffstader',
-                                job: 'theoretical physisyst'
+                                job: 'theoretical physicist'
                             },
                             {
                                 name: 'Radjesh Kootrapali',
-                                job: 'theoretical physisyst'
+                                job: 'theoretical physicist'
                             },
                             {
                                 name: 'Howard Wolowitz',
                                 job: 'rocket engineer'
                             }
                         ],
-                        areTeamMembersShown: false
+                        isActive: false
                     },
                     {
                         name: "True Detective",
@@ -109,7 +118,7 @@
                                 job: 'detective'
                             }
                         ],
-                        areTeamMembersShown: false
+                        isActive: false
                     }
                 ];
             },
