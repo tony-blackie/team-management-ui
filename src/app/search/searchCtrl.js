@@ -9,11 +9,27 @@
 
     function SearchCtrl($scope) {
 
-        $scope.text = 'TitleTitleTitleTitleTitleTitleTitleTitle';
+        $scope.tabs = [
+            {
+                text: "Search",
+                isActive: true
+            },
+            {
+                text: "List",
+                isActive: false
+            }
+        ];
 
-        $scope.changeText = function() {
-            $scope.text = 'changed!';
+        $scope.activateTab = function(index) {  //TODO: Cover with tests!
+            deactivateAllTabs();
+            $scope.tabs[index].isActive = true;
         };
+
+        function deactivateAllTabs() {
+            angular.forEach($scope.tabs, function(tab) {
+                tab.isActive = false;
+            });
+        }
     }
 
 })();
