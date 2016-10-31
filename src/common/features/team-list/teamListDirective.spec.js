@@ -1,0 +1,75 @@
+'use strict';
+
+describe('teamListDirective tests', function() {
+    var $compile,
+        $rootScope,
+        $templateCache,
+        element;
+    beforeEach(function() {
+        module('awesome-app.common.features.team-list');
+
+        inject(function(_$compile_, _$rootScope_, _$templateCache_) {
+            $compile = _$compile_;
+            $rootScope = _$rootScope_;
+            $templateCache = _$templateCache_;
+        });
+
+        $templateCache.put('../common/features/team-list/team-list.html', '' +
+                '<div class="team-wrapper" ng-repeat="team in teams">' +
+            '<div class="team-name" ng-click="makeActive($index)"></div>' +
+            '</div>');
+
+        element = $compile("<team-list></team-list>")($rootScope);
+        $rootScope.$digest();
+    });
+
+    it('should call makeActive when element is clicked', function() {
+        spyOn(scope, 'makeActive');
+
+        element.find('.team-name')[0].click();
+
+        expect(scope.makeActive).toHaveBeenCalled();
+    });
+
+    it('should make element inactive after click if it was active previously', function() {
+        scope.teams = [
+            {
+                name: 'team1',
+                members: [],
+                isActive: true
+            }
+        ];
+
+        element.find('.team-name')[0].click();
+
+        expect(scope.teams[0].isActive).toBeFalsy();
+    });
+
+    it('should make other teams inactive if new one is clicked', function() {
+        scope.teams = [
+            {
+                name: 'team1',
+                members: [],
+                isActive: true
+            },
+            {
+                name: 'team2',
+                members: [],
+                isActive: false
+            },
+            {
+                name: 'team3',
+                members: [],
+                isActive: false
+            }
+        ];
+
+        element.find('.team-name')[1].click();
+
+        expect(scope.teams[0].isActive).toBeFalsy();
+        expect(scope.teams[1].isActive).toBeTruthy();
+        expect(scope.teams[2].isActive).toBeFalsy();
+    });
+
+});
+

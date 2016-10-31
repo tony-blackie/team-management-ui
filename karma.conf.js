@@ -6,6 +6,7 @@ module.exports = function(config){
     frameworks: ['jasmine'],
 
     files : [
+      'vendor/jquery/dist/jquery.js',
       'vendor/angular/angular.js',
       'vendor/angular-route/angular-route.js',
       'vendor/angular-mocks/angular-mocks.js',
