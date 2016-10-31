@@ -15,6 +15,8 @@ describe('teamListDirective tests', function() {
         });
 
         $templateCache.put('../common/features/team-list/team-list.html', '' +
+            '<input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">' +
+            '<button class="team-add-button" ng-click="addTeam()">+</button>' +
                 '<div class="team-wrapper" ng-repeat="team in teams">' +
             '<div class="team-name" ng-click="makeActive($index)"></div>' +
             '</div>');
@@ -69,6 +71,14 @@ describe('teamListDirective tests', function() {
         expect(scope.teams[0].isActive).toBeFalsy();
         expect(scope.teams[1].isActive).toBeTruthy();
         expect(scope.teams[2].isActive).toBeFalsy();
+    });
+
+    it('should call addTeam on click', function() {
+        spyOn(scope, 'addTeam');
+
+        element.find('.team-add-button').click();
+
+        expect(scope.addTeam).toHaveBeenCalled();
     });
 
 });
