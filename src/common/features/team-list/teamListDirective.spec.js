@@ -102,5 +102,25 @@ describe('teamListDirective tests', function() {
         expect(scope.teams.length).toBe(3);
     });
 
+    it('should not add extra team if teamName is empty', function() {
+        scope.teams = [
+            {
+                name: 'team1',
+                members: [],
+                isActive: true
+            },
+            {
+                name: 'team2',
+                members: [],
+                isActive: false
+            }
+        ];
+
+        scope.teamName = "";
+
+        element.find('.team-add-button').click();
+
+        expect(scope.teams.length).toBe(2);
+    });
 });
 
