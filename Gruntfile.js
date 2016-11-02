@@ -460,7 +460,7 @@ module.exports = function(grunt) {
 
 
     grunt.registerTask('build', [
-        'jshint', 'clean:build', 'copy', 'recess', 'html2js', 'pack:build'
+        'clean:build', 'copy', 'recess', 'html2js', 'pack:build'
     ]);
 
     grunt.registerTask('compile', [
