@@ -8,6 +8,9 @@
     function teamList(SearchService) {
         var directive = {
             templateUrl: '../common/features/team-list/team-list.html',
+            scope: {
+                teams: '=?'
+            },
             link: function(scope, element, attrs) {
 
                 window.scope = scope; //TODO: Remove
