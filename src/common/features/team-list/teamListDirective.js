@@ -1,9 +1,11 @@
 (function() {
     angular
-        .module('awesome-app.common.features.team-list', [])
+        .module('awesome-app.common.features.team-list', ['awesome-app.search'])
         .directive('teamList', teamList);
 
-    function teamList() {
+    teamList.$inject = ['SearchService'];
+
+    function teamList(SearchService) {
         var directive = {
             templateUrl: '../common/features/team-list/team-list.html',
             link: function(scope, element, attrs) {

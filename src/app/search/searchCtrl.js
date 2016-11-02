@@ -5,9 +5,9 @@
         .module('awesome-app.search')
         .controller('SearchCtrl', SearchCtrl);
 
-    SearchCtrl.$inject = ['$scope'];
+    SearchCtrl.$inject = ['$scope', 'SearchService'];
 
-    function SearchCtrl($scope) {
+    function SearchCtrl($scope, SearchService) {
 
         $scope.tabs = [
             {
@@ -19,6 +19,8 @@
                 isActive: false
             }
         ];
+
+        $scope.workers = SearchService.getAllWorkers();
 
         $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {
