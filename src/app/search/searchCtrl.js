@@ -26,7 +26,7 @@
             });
         };
 
-        $scope.activateTab = function(index) {  //TODO: Cover with tests!
+        $scope.activateTab = function(index) {
             $scope.deactivateAllTabs();
             $scope.tabs[index].isActive = true;
         };
