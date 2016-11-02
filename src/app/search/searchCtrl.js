@@ -20,16 +20,16 @@
             }
         ];
 
-        $scope.activateTab = function(index) {  //TODO: Cover with tests!
-            deactivateAllTabs();
-            $scope.tabs[index].isActive = true;
-        };
-
-        function deactivateAllTabs() {
+        $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {
                 tab.isActive = false;
             });
-        }
+        };
+
+        $scope.activateTab = function(index) {  //TODO: Cover with tests!
+            $scope.deactivateAllTabs();
+            $scope.tabs[index].isActive = true;
+        };
     }
 
 })();
