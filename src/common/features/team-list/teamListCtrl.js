@@ -8,6 +8,12 @@
     TeamListCtrl.$inject = ['$scope'];
 
     function TeamListCtrl($scope) {
+        var vm = this;
+
+        angular.extend(vm, {
+            deselectAllOtherTeams: deselectAllOtherTeams
+        });
+
         $scope.teams = [
             {
                 name: "Friends",
@@ -117,7 +123,7 @@
 
         $scope.makeActive = function(index) {
             $scope.teams[index].isActive = !$scope.teams[index].isActive;
-            deselectAllOtherTeams(index);
+            vm.deselectAllOtherTeams(index);
         };
     }
 })();
