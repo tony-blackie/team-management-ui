@@ -6,11 +6,28 @@
              ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
     </div>
 
-    <div class="search-container">
+    <div class="search-container" ng-controller="SearchCtrl">
         <div class="search-items">
             <div class="search-items__person">Person</div>
             <input class="search-items__input">
         </div>
         <div class="search-refresh"></div>
+    </div>
+</div>
+
+<div class="team-container">
+    <div class="team-add-team">
+        <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
+        <button class="team-add-button" ng-click="addTeam()">+</button>
+    </div>
+    <div class="team-wrapper" ng-repeat="team in teams">
+        <div class="team-name"
+             ng-click="makeActive($index)"
+             ng-class="{'team-highlighted': team.isActive}">{{team.name}}</div>
+        <div class="member-wrapper" ng-show="team.isActive">
+            <div class="member" ng-repeat="member in team.members">
+                <div class="member_item">{{member.name}} - {{member.job}}</div>
+            </div>
+        </div>
     </div>
 </div>
