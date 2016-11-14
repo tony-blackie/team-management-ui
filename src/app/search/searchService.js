@@ -27,13 +27,13 @@
         function setWorkers(team) {
             var isEqual = true;
 
-            if (!factory.workers.length) {
+            if (!factory.workers.length || factory.workers.length !== team.length) {
                 factory.workers = team;
                 return;
             }
 
             angular.forEach(factory.workers, function(worker, i) {
-                if (worker.name !== team[i].name) {
+                if (worker && team && worker.name !== team[i].name) {
                     isEqual = false;
                 }
             });

@@ -102,9 +102,28 @@
   background-color: rgba(0, 164, 231, 0.51);
 }
 
+.member {
+  &:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+  }
+}
 
-.member_item {
+.member__item {
   padding: 2px 5px 0;
+  width: 80%;
+  float: left;
+}
+
+.member__delete {
+  float: right;
+  margin-right: 10px;
+  font-weight: bold;
+  cursor: pointer;
 }
 
 .team-container {

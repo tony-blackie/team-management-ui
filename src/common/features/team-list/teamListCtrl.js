@@ -128,6 +128,10 @@
             $scope.$broadcast('changeActiveTeam');
         };
 
+        $scope.deleteMember = function(index) {
+            return index;   //TODO: Functionality
+        };
+
         function saveWorkersToService(index) {
             SearchService.setWorkers($scope.teams[index].members);
         }

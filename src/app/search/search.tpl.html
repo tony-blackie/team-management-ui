@@ -26,7 +26,8 @@
              ng-class="{'team-highlighted': team.isActive}">{{team.name}}</div>
         <div class="member-wrapper" ng-show="team.isActive">
             <div class="member" ng-repeat="member in team.members">
-                <div class="member_item">{{member.name}} - {{member.job}}</div>
+                <div class="member__item">{{member.name}} - {{member.job}}</div>
+                <div class="member__delete" ng-click="deleteMember($index)">X</div>
             </div>
         </div>
     </div>
