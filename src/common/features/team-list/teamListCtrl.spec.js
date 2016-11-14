@@ -3,13 +3,15 @@
     describe('awesome-app.search module', function() {
         var $controller,
             $scope,
-            controller;
+            controller,
+            SearchService;
 
         beforeEach(function () {
             module('awesome-app.search');
 
-            inject(function (_$controller_) {
+            inject(function (_$controller_, _SearchService_) {
                 $controller = _$controller_;
+                SearchService = _SearchService_;
             });
 
             $scope = {};
@@ -121,6 +123,15 @@
             $scope.addTeam();
 
             expect($scope.teams.length).toBe(2);
+        });
+
+        it('should call set workers on service', function() {
+            spyOn(SearchService, 'setWorkers');
+
+            $scope.makeActive(2);
+
+            expect(SearchService.setWorkers).toHaveBeenCalled();
+
         });
     });
 })();
