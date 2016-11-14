@@ -1,5 +1,4 @@
 (function() {
-    "use strict";
 
     describe('awesome-app.search module', function() {
         var $controller,
@@ -14,6 +13,7 @@
             });
 
             $scope = {};
+            $scope.$broadcast = function() {};
             controller = $controller('TeamListCtrl', {$scope: $scope});
 
             $scope.tabs = [

@@ -20,8 +20,6 @@
             }
         ];
 
-        $scope.SearchService = SearchService;
-
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = SearchService.getWorkers();
         });

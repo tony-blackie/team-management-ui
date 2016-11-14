@@ -12,6 +12,7 @@
             });
 
             $scope = {};
+            $scope.$on = function() {};
             var controller = $controller('SearchCtrl', {$scope: $scope});
 
             $scope.tabs = [
