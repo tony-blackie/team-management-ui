@@ -131,7 +131,31 @@
             $scope.makeActive(2);
 
             expect(SearchService.setWorkers).toHaveBeenCalled();
+        });
 
+        it('should delete team member', function() {
+            $scope.teams = [
+                {
+                    name: 'Friends',
+                    members: [
+                        {
+                            name: 'Ross Gellar',
+                            job: 'paleonthologist'
+                        },
+                        {
+                            name: 'Chandler Bing',
+                            job: 'accountant'
+                        }
+                    ]
+                }
+            ];
+
+            $scope.currentActiveTeamIndex = 0;
+
+            $scope.deleteMember(1);
+
+            expect($scope.teams[0].members.length).toBe(1);
+            expect($scope.teams[0].members[1]).not.toBeDefined();
         });
     });
 })();
