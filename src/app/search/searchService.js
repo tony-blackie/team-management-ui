@@ -25,7 +25,20 @@
         }
 
         function setWorkers(index, team) {
-            factory.workers = team;
+            var isEqual = true;
+
+            if (!factory.workers.length) {
+                factory.workers = team;
+                return;
+            }
+
+            angular.forEach(factory.workers, function(worker, i) {
+                if (worker !== team[i]) {
+                    isEqual = false;
+                }
+            });
+
+            factory.workers = isEqual ? [] : team;
         }
 
         function getAllWorkers() {

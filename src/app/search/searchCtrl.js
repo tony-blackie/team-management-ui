@@ -22,8 +22,6 @@
 
         $scope.SearchService = SearchService;
 
-        $scope.teamMembers = [{name: "Person"}];
-
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = SearchService.getWorkers();
         });
