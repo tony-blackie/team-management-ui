@@ -8,6 +8,6 @@
                     url: '^/search',
                     controller: 'TeamListCtrl',
                     templateUrl: 'search/search.tpl.html'
-                })
+                });
     });
 })();

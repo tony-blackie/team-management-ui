@@ -94,14 +94,6 @@
 
         $scope.currentActiveTeamIndex = null;
 
-        function deselectAllOtherTeams(index) {
-            angular.forEach($scope.teams, function(team, i) {
-                if(team.isActive && i !== index) {
-                    $scope.teams[i].isActive = false;
-                }
-            });
-        }
-
         $scope.addTeam = function() {
             var stringContainsSpecialCharacters = false;
             angular.forEach($scope.teamName.split(''), function(char) {
@@ -137,6 +129,14 @@
 
         function saveWorkersToService(index) {
             SearchService.setWorkers($scope.teams[index].members);
+        }
+
+        function deselectAllOtherTeams(index) {
+            angular.forEach($scope.teams, function(team, i) {
+                if(team.isActive && i !== index) {
+                    $scope.teams[i].isActive = false;
+                }
+            });
         }
     }
 })();

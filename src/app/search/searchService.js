@@ -15,7 +15,8 @@
         angular.extend(factory, {
             getWorkers: getWorkers,
             setWorkers: setWorkers,
-            getAllWorkers: getAllWorkers
+            getAllWorkers: getAllWorkers,
+            getTypeaheadData: getTypeaheadData
         });
 
         return factory;
@@ -46,5 +47,12 @@
                 console.log(response);
             });
         }
+
+        function getTypeaheadData(url) {
+            return $http.get(url)
+                .then(function(response) {
+                    return response.data;
+                });
+        };
     }
 })();

@@ -35,6 +35,15 @@
             $scope.deactivateAllTabs();
             $scope.tabs[index].isActive = true;
         };
+
+        SearchService.getTypeaheadData('staff.json').then(function(data) {
+            $scope.items = data;
+        });
+
+        $scope.name = '';
+        $scope.onItemSelected = function() {
+            console.log('selected=' + $scope.name);
+        };
     }
 
 })();

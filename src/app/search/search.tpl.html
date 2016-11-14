@@ -9,7 +9,14 @@
     <div class="search-container" ng-controller="SearchCtrl">
         <div class="search-items">
             <div class="search-items__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
-            <input class="search-items__input">
+            <!--<input class="search-items__input">-->
+            <typeahead items="items"
+                       prompt="Start typing a US state"
+                       title="name"
+                       subtitle="abbreviation"
+                       model="name"
+                       on-select="onItemSelected()"
+            ></typeahead>
         </div>
         <div class="search-refresh"></div>
     </div>
