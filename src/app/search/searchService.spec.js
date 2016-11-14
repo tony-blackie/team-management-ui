@@ -23,6 +23,8 @@
         it('should clear workers array if content is same as previous', function() {
             SearchService.setWorkers([{name: 'Ross Gellar'}]);
 
+            expect(SearchService.workers).toEqual([{name: 'Ross Gellar'}]);
+
             SearchService.setWorkers([{name: 'Ross Gellar'}]);
 
             expect(SearchService.workers).toEqual([]);

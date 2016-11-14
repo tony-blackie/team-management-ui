@@ -33,8 +33,6 @@
             }
 
             angular.forEach(factory.workers, function(worker, i) {
-                console.log(worker.name);
-                console.log(team[i].name);
                 if (worker.name !== team[i].name) {
                     isEqual = false;
                 }
