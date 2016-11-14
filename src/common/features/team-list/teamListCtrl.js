@@ -117,7 +117,6 @@
                     name: $scope.teamName,
                     members: [],
                     isActive: false
-
                 }
             );
         };
@@ -130,7 +129,7 @@
         };
 
         function saveWorkersToService(index) {
-            SearchService.setWorkers(index, $scope.teams[index].members);
+            SearchService.setWorkers($scope.teams[index].members);
         }
     }
 })();

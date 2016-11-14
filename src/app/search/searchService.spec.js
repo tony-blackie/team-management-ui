@@ -15,9 +15,21 @@
             SearchService.workers = [];
             var members = [{name: 'Ross Gellar'}];
 
-            SearchService.setWorkers(2, members);
+            SearchService.setWorkers(members);
 
             expect(SearchService.workers).toEqual([{name: 'Ross Gellar'}]);
+        });
+
+        it('should clear workers array if content is same as previous', function() {
+            SearchService.setWorkers([{name: 'Ross Gellar'}]);
+
+            SearchService.setWorkers([{name: 'Ross Gellar'}]);
+
+            expect(SearchService.workers).toEqual([]);
+        });
+
+        it ('should get workers', function() {
+
         });
     });
 

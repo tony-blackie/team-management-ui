@@ -24,7 +24,7 @@
             return factory.workers;
         }
 
-        function setWorkers(index, team) {
+        function setWorkers(team) {
             var isEqual = true;
 
             if (!factory.workers.length) {
@@ -33,7 +33,9 @@
             }
 
             angular.forEach(factory.workers, function(worker, i) {
-                if (worker !== team[i]) {
+                console.log(worker.name);
+                console.log(team[i].name);
+                if (worker.name !== team[i].name) {
                     isEqual = false;
                 }
             });
