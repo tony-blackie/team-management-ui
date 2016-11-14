@@ -92,6 +92,8 @@
             }
         ];
 
+        $scope.currentActiveTeamIndex = null;
+
         function deselectAllOtherTeams(index) {
             angular.forEach($scope.teams, function(team, i) {
                 if(team.isActive && i !== index) {
@@ -125,11 +127,12 @@
             $scope.teams[index].isActive = !$scope.teams[index].isActive;
             vm.deselectAllOtherTeams(index);
             vm.saveWorkersToService(index);
+            $scope.currentActiveTeamIndex = index;
             $scope.$broadcast('changeActiveTeam');
         };
 
         $scope.deleteMember = function(index) {
-            return index;   //TODO: Functionality
+            $scope.teams[$scope.currentActiveTeamIndex].members.splice(1, index);
         };
 
         function saveWorkersToService(index) {
