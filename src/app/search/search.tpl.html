@@ -8,7 +8,7 @@
 
     <div class="search-container" ng-controller="SearchCtrl">
         <div class="search-items">
-            <div class="search-items__person">Person</div>
+            <div class="search-items__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
             <input class="search-items__input">
         </div>
         <div class="search-refresh"></div>

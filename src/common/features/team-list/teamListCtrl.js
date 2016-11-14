@@ -5,13 +5,14 @@
         .module('awesome-app.search')
         .controller('TeamListCtrl', TeamListCtrl);
 
-    TeamListCtrl.$inject = ['$scope'];
+    TeamListCtrl.$inject = ['$scope', 'SearchService'];
 
-    function TeamListCtrl($scope) {
+    function TeamListCtrl($scope, SearchService) {
         var vm = this;
 
         angular.extend(vm, {
-            deselectAllOtherTeams: deselectAllOtherTeams
+            deselectAllOtherTeams: deselectAllOtherTeams,
+            saveWorkersToService: saveWorkersToService
         });
 
         $scope.teams = [
@@ -124,6 +125,12 @@
         $scope.makeActive = function(index) {
             $scope.teams[index].isActive = !$scope.teams[index].isActive;
             vm.deselectAllOtherTeams(index);
+            vm.saveWorkersToService(index);
+            $scope.$broadcast('changeActiveTeam');
         };
+
+        function saveWorkersToService(index) {
+            SearchService.setWorkers(index, $scope.teams[index].members);
+        }
     }
 })();

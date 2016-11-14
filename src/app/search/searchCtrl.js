@@ -20,7 +20,14 @@
             }
         ];
 
-        $scope.workers = SearchService.getAllWorkers();
+        $scope.SearchService = SearchService;
+
+        $scope.teamMembers = [{name: "Person"}];
+
+        $scope.$on('changeActiveTeam', function() {
+            $scope.teamMembers = SearchService.getWorkers();
+        });
+
 
         $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {

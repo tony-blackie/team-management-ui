@@ -25,13 +25,12 @@
         }
 
         function setWorkers(index, team) {
-            factory.workers[index] = team;
+            factory.workers = team;
         }
 
         function getAllWorkers() {
             $http.get('/staff.json').then(function(response) {
                 console.log(response);
-                debugger;
             });
         }
     }
