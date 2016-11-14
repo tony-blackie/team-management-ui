@@ -456,6 +456,7 @@ module.exports = function(grunt) {
                 });
             }
         });
+        grunt.file.copy(grunt.config('frontend.src.dir') + '/staff.json', this.data.dir + '/staff.json');
     });
 
 
