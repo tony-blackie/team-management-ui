@@ -132,7 +132,7 @@
         };
 
         $scope.deleteMember = function(index) {
-            $scope.teams[$scope.currentActiveTeamIndex].members.splice(1, index);
+            $scope.teams[$scope.currentActiveTeamIndex].members.splice(index, 1);
         };
 
         function saveWorkersToService(index) {
