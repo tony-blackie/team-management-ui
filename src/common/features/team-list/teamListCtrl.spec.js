@@ -158,5 +158,27 @@
             expect($scope.teams[0].members.length).toBe(1);
             expect($scope.teams[0].members[1]).not.toBeDefined();
         });
+
+        describe('tab functionality tests', function() {
+            it('should call deactivateAllTabs when activateTab is called', function() {
+                spyOn($scope, 'deactivateAllTabs');
+
+                $scope.activateTab(1);
+
+                expect($scope.deactivateAllTabs).toHaveBeenCalled();
+            });
+
+            it('should deactivate all tabs when deactivateAllTabs is called', function() {
+                $scope.deactivateAllTabs();
+
+                expect($scope.tabs[0].isActive).toBe(false);
+                expect($scope.tabs[1].isActive).toBe(false);
+            });
+
+            it('should activate tab on click', function() {
+                $scope.activateTab(1);
+                expect($scope.tabs).toEqual([{text: 'Search', isActive: false}, {text: 'List', isActive: true}]);
+            });
+        });
     });
 })();

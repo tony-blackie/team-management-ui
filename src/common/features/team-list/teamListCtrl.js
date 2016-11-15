@@ -15,6 +15,34 @@
             saveWorkersToService: saveWorkersToService
         });
 
+
+        $scope.tabs = [
+            {
+                text: "Search",
+                isActive: true
+            },
+            {
+                text: "List",
+                isActive: false
+            }
+        ];
+
+        $scope.$on('changeActiveTeam', function() {
+            $scope.teamMembers = angular.copy(SearchService.getWorkers());
+        });
+
+
+        $scope.deactivateAllTabs = function() {
+            angular.forEach($scope.tabs, function(tab) {
+                tab.isActive = false;
+            });
+        };
+
+        $scope.activateTab = function(index) {
+            $scope.deactivateAllTabs();
+            $scope.tabs[index].isActive = true;
+        };
+
         $scope.teams = [
             {
                 name: "Friends",
@@ -141,10 +169,6 @@
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
-            console.log($scope.teams);
-            console.log($scope.currentActiveTeamIndex);
-            console.log($scope.teams[currentActiveTeamIndex]);
-
             $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
         });
     }
