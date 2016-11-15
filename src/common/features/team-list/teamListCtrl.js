@@ -19,11 +19,13 @@
         $scope.tabs = [
             {
                 text: "Search",
-                isActive: true
+                isActive: true,
+                url: '/search'
             },
             {
                 text: "List",
-                isActive: false
+                isActive: false,
+                url: '/list'
             }
         ];
 
@@ -147,7 +149,6 @@
             $scope.teams[index].isActive = !$scope.teams[index].isActive;
             vm.deselectAllOtherTeams(index);
             vm.saveWorkersToService(index);
-            $scope.currentActiveTeamIndex = index;
             $scope.$broadcast('changeActiveTeam');
         };
 
@@ -158,6 +159,7 @@
 
         function saveWorkersToService(index) {
             SearchService.setWorkers($scope.teams[index].members);
+            $scope.currentActiveTeamIndex = index;
         }
 
         function deselectAllOtherTeams(index) {
