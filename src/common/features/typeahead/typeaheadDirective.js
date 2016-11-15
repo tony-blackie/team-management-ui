@@ -13,7 +13,12 @@
         directive =  {
             restrict: 'AEC',
             scope: {
-
+                items: "=",
+                prompt: '@',
+                title: '@',
+                subtitle: '@',
+                model: '=',
+                onSelect: '&'
             },
             link: function(scope, elem, attrs) {
                 scope.handleSelection = function(selectedItem) {
