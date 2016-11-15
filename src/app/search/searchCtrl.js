@@ -21,7 +21,7 @@
         ];
 
         $scope.$on('changeActiveTeam', function() {
-            $scope.teamMembers = SearchService.getWorkers();
+            $scope.teamMembers = angular.copy(SearchService.getWorkers());
         });
 
 
@@ -40,9 +40,24 @@
             $scope.items = data;
         });
 
-        $scope.name = '';
+        $scope.worker = '';
+        $scope.newTeamMembers = [];
         $scope.onItemSelected = function() {
-            console.log('selected=' + $scope.name);
+            $scope.teamMembers = angular.copy($scope.teamMembers);
+            $scope.teamMembers.push(
+                {
+                    name: $scope.worker.name,
+                    age: $scope.worker.age,
+                    job: $scope.worker.job,
+                    id: $scope.worker.id,
+                    grade: $scope.worker.grade
+
+                }
+            );
+            $scope.worker = '';
+        };
+        $scope.refreshTeamList = function() {
+            $scope.$emit('saveTeamMembers', $scope.teamMembers);
         };
     }
 

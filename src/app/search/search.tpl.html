@@ -7,17 +7,17 @@
     </div>
 
     <div class="search-container" ng-controller="SearchCtrl">
-        <div class="search-items">
+        <div class="search-items" ng-show="teamMembers.length">
             <div class="search-items__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
             <typeahead items="items"
                        prompt=""
                        title="name"
                        subtitle="abbreviation"
-                       model="name"
+                       model="worker"
                        on-select="onItemSelected()"
             ></typeahead>
         </div>
-        <div class="search-refresh"></div>
+        <button class="search-refresh" ng-click="refreshTeamList()">Refresh</button>
     </div>
 </div>
 

@@ -5,9 +5,9 @@
         .module('awesome-app.common.features.typeahead', ['awesome-app.search'])
         .directive('typeahead', typeahead);
 
-    typeahead.$inject = ['SearchService'];
+    typeahead.$inject = ['SearchService', '$timeout'];
 
-    function typeahead(SearchService) {
+    function typeahead(SearchService, $timeout) {
         var directive;
 
         directive =  {
