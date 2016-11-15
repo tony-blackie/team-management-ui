@@ -4,12 +4,14 @@
         var $controller,
             $scope,
             SearchService,
-            $rootScope;
+            $rootScope,
+            controller,
+            element;
 
         beforeEach(function() {
             module('awesome-app.search');
 
-            inject(function(_$controller_, _SearchService_, _$rootScope_) {
+            inject(function(_$controller_, _SearchService_, _$rootScope_, _$compile_, _$templateCache_) {
                 $controller = _$controller_;
                 SearchService = _SearchService_;
                 $rootScope = _$rootScope_;
@@ -17,7 +19,7 @@
 
             $scope = $rootScope.$new();
             $scope.$on = function() {};
-            var controller = $controller('SearchCtrl', {$scope: $scope});
+            controller = $controller('SearchCtrl', {$scope: $scope});
         });
 
         describe('search controller tests', function(){
@@ -37,6 +39,21 @@
                 $scope.refreshTeamList();
 
                 expect($scope.$emit).toHaveBeenCalledWith('saveTeamMembers', $scope.teamMembers);
+            });
+
+            it('should remove teamMember', function() {
+                $scope.teamMembers = [
+                    {
+                        name: 'Ross Gellar'
+                    },
+                    {
+                        name: 'Chandler Bing'
+                    }
+                ];
+
+                $scope.removeTeamMember(0);
+
+                expect($scope.teamMembers).toEqual([{name: 'Chandler Bing'}]);
             });
         });
     });

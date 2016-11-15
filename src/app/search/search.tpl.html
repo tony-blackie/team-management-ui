@@ -8,7 +8,11 @@
 
     <div class="search__container" ng-controller="SearchCtrl">
         <div class="search__search-area" ng-show="teamMembers.length">
-            <div class="search__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
+            <div class="search__person" ng-repeat="teamMember in teamMembers">
+                <div class="search__name">{{teamMember.name}}</div>
+                <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
+            </div>
+
             <typeahead items="items"
                        prompt=""
                        title="name"

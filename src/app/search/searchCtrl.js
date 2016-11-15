@@ -18,7 +18,6 @@
                     job: worker.job,
                     id: worker.id,
                     grade: worker.grade
-
                 }
             );
             $scope.worker = '';
@@ -36,6 +35,10 @@
             SearchService.getTypeaheadData('staff.json').then(function(data) {
                 $scope.items = data;
             });
+        };
+
+        $scope.removeTeamMember = function(index) {
+            $scope.teamMembers.splice(index, 1);
         };
 
         $scope.getTypeaheadData();
