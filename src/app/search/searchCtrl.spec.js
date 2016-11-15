@@ -5,13 +5,12 @@
             $scope,
             SearchService,
             $rootScope,
-            controller,
-            element;
+            controller;
 
         beforeEach(function() {
             module('awesome-app.search');
 
-            inject(function(_$controller_, _SearchService_, _$rootScope_, _$compile_, _$templateCache_) {
+            inject(function(_$controller_, _SearchService_, _$rootScope_) {
                 $controller = _$controller_;
                 SearchService = _SearchService_;
                 $rootScope = _$rootScope_;
