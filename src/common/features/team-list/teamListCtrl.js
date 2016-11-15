@@ -92,7 +92,7 @@
             }
         ];
 
-        var currentActiveTeamIndex = null;
+        $scope.currentActiveTeamIndex = null;
 
         $scope.addTeam = function() {
             var stringContainsSpecialCharacters = false;
@@ -119,12 +119,13 @@
             $scope.teams[index].isActive = !$scope.teams[index].isActive;
             vm.deselectAllOtherTeams(index);
             vm.saveWorkersToService(index);
-            currentActiveTeamIndex = index;
+            $scope.currentActiveTeamIndex = index;
             $scope.$broadcast('changeActiveTeam');
         };
 
         $scope.deleteMember = function(index) {
-            $scope.teams[currentActiveTeamIndex].members.splice(index, 1);
+            $scope.teams[$scope.currentActiveTeamIndex].members.splice(index, 1);
+            $scope.$broadcast('removeTeamMember', $scope.teams[$scope.currentActiveTeamIndex].members);
         };
 
         function saveWorkersToService(index) {
@@ -140,7 +141,11 @@
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
-            $scope.teams[currentActiveTeamIndex].members = teamMembers;
+            console.log($scope.teams);
+            console.log($scope.currentActiveTeamIndex);
+            console.log($scope.teams[currentActiveTeamIndex]);
+
+            $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
         });
     }
 })();

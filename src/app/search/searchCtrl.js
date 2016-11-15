@@ -40,22 +40,25 @@
             $scope.items = data;
         });
 
-        $scope.worker = '';
-        $scope.newTeamMembers = [];
-        $scope.onItemSelected = function() {
+        $scope.$on('chosenTeamMember', function(event, worker) {
             $scope.teamMembers = angular.copy($scope.teamMembers);
             $scope.teamMembers.push(
                 {
-                    name: $scope.worker.name,
-                    age: $scope.worker.age,
-                    job: $scope.worker.job,
-                    id: $scope.worker.id,
-                    grade: $scope.worker.grade
+                    name: worker.name,
+                    age: worker.age,
+                    job: worker.job,
+                    id: worker.id,
+                    grade: worker.grade
 
                 }
             );
             $scope.worker = '';
-        };
+        });
+
+        $scope.$on('removeTeamMember', function(event, members) {
+            $scope.teamMembers = members;
+        });
+
         $scope.refreshTeamList = function() {
             $scope.$emit('saveTeamMembers', $scope.teamMembers);
         };

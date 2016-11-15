@@ -22,12 +22,12 @@
             },
             link: function(scope, elem, attrs) {
                 scope.handleSelection = function(selectedItem) {
-                    scope.model = selectedItem;
                     scope.current = 0;
                     scope.selected = true;
                     $timeout(function() {
                         scope.onSelect();
                     }, 200);
+                    scope.$emit('chosenTeamMember', selectedItem);
                 };
                 scope.current = 0;
                 scope.selected = true; // hides the list initially

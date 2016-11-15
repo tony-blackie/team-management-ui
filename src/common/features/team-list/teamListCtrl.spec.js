@@ -4,8 +4,7 @@
         var $controller,
             $scope,
             controller,
-            SearchService,
-            currentActiveTeamIndex;
+            SearchServicex;
 
         beforeEach(function () {
             module('awesome-app.search');
@@ -30,8 +29,6 @@
                     isActive: false
                 }
             ];
-
-            currentActiveTeamIndex = 0;
         });
 
         it('should make element inactive after click if it was active previously', function() {
@@ -154,7 +151,7 @@
                 }
             ];
 
-            currentActiveTeamIndex = 0;
+            $scope.currentActiveTeamIndex = 0;
 
             $scope.deleteMember(1);
 

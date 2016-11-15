@@ -1,4 +1,4 @@
-<div class="search-wrapper">
+<div class="search__wrapper">
     <div class="search-tabs">
         <div ng-repeat="tab in tabs"
              class="search-tabs__item"
@@ -6,9 +6,9 @@
              ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
     </div>
 
-    <div class="search-container" ng-controller="SearchCtrl">
-        <div class="search-items" ng-show="teamMembers.length">
-            <div class="search-items__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
+    <div class="search__container" ng-controller="SearchCtrl">
+        <div class="search__search-area" ng-show="teamMembers.length">
+            <div class="search__person" ng-repeat="teamMember in teamMembers">{{teamMember.name}}</div>
             <typeahead items="items"
                        prompt=""
                        title="name"
@@ -16,8 +16,9 @@
                        model="worker"
                        on-select="onItemSelected()"
             ></typeahead>
+            <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
         </div>
-        <button class="search-refresh" ng-click="refreshTeamList()">Refresh</button>
+
     </div>
 </div>
 
