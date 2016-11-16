@@ -8,6 +8,7 @@
     SearchCtrl.$inject = ['$scope', 'SearchService'];
 
     function SearchCtrl($scope, SearchService) {
+        $scope.isAnyTeamActive = false;
 
         $scope.$on('chosenTeamMember', function(event, worker) {
             $scope.teamMembers = angular.copy($scope.teamMembers);
@@ -25,6 +26,7 @@
 
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = angular.copy(SearchService.getWorkers());
+            $scope.isAnyTeamActive = !!$scope.teamMembers.length;
         });
 
         $scope.$on('removeTeamMember', function(event, members) {
@@ -36,8 +38,10 @@
         };
 
         $scope.getTypeaheadData = function() {
+            console.log('outer');
             SearchService.getTypeaheadData('staff.json').then(function(data) {
                 $scope.items = data;
+                console.log('inner');
             });
         };
 

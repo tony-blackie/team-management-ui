@@ -7,7 +7,7 @@
     </div>
 
     <div class="search__container" ng-controller="SearchCtrl" ng-show="tabs[0].isActive">
-        <div class="search__search-area">
+        <div class="search__search-area" ng-show="isAnyTeamActive">
             <div class="search__person" ng-show="teamMembers.length" ng-repeat="teamMember in teamMembers">
                 <div class="search__name">{{teamMember.name}}</div>
                 <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
@@ -21,6 +21,7 @@
             ></typeahead>
             <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
         </div>
+        <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
 
     </div>
 

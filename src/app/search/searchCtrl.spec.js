@@ -5,15 +5,17 @@
             $scope,
             SearchService,
             $rootScope,
-            controller;
+            controller,
+            $httpBackend;
 
         beforeEach(function() {
             module('awesome-app.search');
 
-            inject(function(_$controller_, _SearchService_, _$rootScope_) {
+            inject(function(_$controller_, _SearchService_, _$rootScope_, _$httpBackend_) {
                 $controller = _$controller_;
                 SearchService = _SearchService_;
                 $rootScope = _$rootScope_;
+                $httpBackend = _$httpBackend_;
             });
 
             $scope = $rootScope.$new();
@@ -53,6 +55,28 @@
                 $scope.removeTeamMember(0);
 
                 expect($scope.teamMembers).toEqual([{name: 'Chandler Bing'}]);
+            });
+
+            it('should mock request for staff.json', function() {
+                $scope.items = [];
+                SearchService = {
+                    getTypeaheadData: function(url) {
+                        return {
+                            then: function(callback) {
+                                callback({name: 'Ross Gellar'});
+                            }
+                        };
+                    }
+                };
+                spyOn($rootScope, '$broadcast').and.callThrough();
+
+                $rootScope.$broadcast('changeActiveTeam');
+                $httpBackend.whenGET('staff.json').respond({then: function() {}});
+                $httpBackend.expectGET('staff.json');
+                $scope.$digest();
+
+                expect($scope.items).toEqual([{name: 'Ross Gellar'}]);
+
             });
         });
     });
