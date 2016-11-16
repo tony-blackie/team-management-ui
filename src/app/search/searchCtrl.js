@@ -23,6 +23,10 @@
             $scope.worker = '';
         });
 
+        $scope.$on('changeActiveTeam', function() {
+            $scope.teamMembers = angular.copy(SearchService.getWorkers());
+        });
+
         $scope.$on('removeTeamMember', function(event, members) {
             $scope.teamMembers = members;
         });

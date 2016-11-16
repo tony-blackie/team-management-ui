@@ -29,11 +29,6 @@
             }
         ];
 
-        $scope.$on('changeActiveTeam', function() {
-            $scope.teamMembers = angular.copy(SearchService.getWorkers());
-        });
-
-
         $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {
                 tab.isActive = false;
