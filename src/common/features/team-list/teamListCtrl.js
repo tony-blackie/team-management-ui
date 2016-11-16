@@ -5,27 +5,30 @@
         .module('awesome-app.search')
         .controller('TeamListCtrl', TeamListCtrl);
 
-    TeamListCtrl.$inject = ['$scope', 'SearchService'];
+    TeamListCtrl.$inject = ['$scope', 'SearchService', '$location'];
 
-    function TeamListCtrl($scope, SearchService) {
+    function TeamListCtrl($scope, SearchService, $location) {
         var vm = this;
+        var urls = {
+            search: '/search',
+            list: '/list'
+        };
 
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
             saveWorkersToService: saveWorkersToService
         });
 
-
         $scope.tabs = [
             {
                 text: "Search",
                 isActive: true,
-                url: '/search'
+                url: urls.search
             },
             {
                 text: "List",
                 isActive: false,
-                url: '/list'
+                url: urls.list
             }
         ];
 
@@ -33,6 +36,11 @@
             angular.forEach($scope.tabs, function(tab) {
                 tab.isActive = false;
             });
+        };
+
+        $scope.changeTab = function(index) {
+            $scope.activateTab(index);
+            goToUrl($scope.tabs[index].url);
         };
 
         $scope.activateTab = function(index) {
@@ -163,6 +171,10 @@
                     $scope.teams[i].isActive = false;
                 }
             });
+        }
+
+        function goToUrl(url) {
+            $location.url(url);
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {

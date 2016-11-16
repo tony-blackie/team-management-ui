@@ -7,9 +7,9 @@ angular.module('awesome-app', [
     'templates-app',
     'awesome-app.common',
     'awesome-app.home',
-    'awesome-app.about',
+    'awesome-app.list',
     'awesome-app.search'
 ]).
 config(['$urlRouterProvider', function($urlRouterProvider) {
-    $urlRouterProvider.otherwise('/home');
+    $urlRouterProvider.otherwise('/search');
 }]);

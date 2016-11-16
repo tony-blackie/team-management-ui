@@ -14,7 +14,7 @@ describe('teamListDirective tests', function() {
             $templateCache = _$templateCache_;
         });
 
-        $templateCache.put('../common/features/team-list/team-list.html', '' +
+        $templateCache.put('../common/features/team-list/team-list.tpl.html', '' +
             '<input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">' +
             '<button class="team-add-button" ng-click="addTeam()">+</button>' +
                 '<div class="team-wrapper" ng-repeat="team in teams">' +

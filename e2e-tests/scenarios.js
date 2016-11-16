@@ -29,11 +29,11 @@ describe('awesome app', function() {
   describe('about', function() {
 
     beforeEach(function() {
-      browser.get('index.html#/about');
+      browser.get('index.html#/list');
     });
 
 
-    it('should render about when user navigates to /about', function() {
+    it('should render list when user navigates to /list', function() {
       expect(element.all(by.css('[ng-view] h1')).first().getText()).
         toMatch(/About/);
     });

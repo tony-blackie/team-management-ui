@@ -5,7 +5,7 @@
         .config(function config($stateProvider) {
             $stateProvider
                 .state('search', {
-                    url: '^/search',
+                    url: '/search',
                     controller: 'TeamListCtrl',
                     templateUrl: 'search/search.tpl.html'
                 });

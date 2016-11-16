@@ -7,7 +7,7 @@
 
     function teamList(SearchService) {
         var directive = {
-            templateUrl: '../common/features/team-list/team-list.html',
+            templateUrl: '../common/features/team-list/team-list.tpl.html',
             scope: {
                 teams: '=?'
             },
