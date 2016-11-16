@@ -9,10 +9,6 @@
 
     function TeamListCtrl($scope, SearchService, $location) {
         var vm = this;
-        var urls = {
-            search: '/search',
-            list: '/list'
-        };
 
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
@@ -22,13 +18,11 @@
         $scope.tabs = [
             {
                 text: "Search",
-                isActive: true,
-                url: urls.search
+                isActive: true
             },
             {
                 text: "List",
-                isActive: false,
-                url: urls.list
+                isActive: false
             }
         ];
 
@@ -36,11 +30,6 @@
             angular.forEach($scope.tabs, function(tab) {
                 tab.isActive = false;
             });
-        };
-
-        $scope.changeTab = function(index) {
-            $scope.activateTab(index);
-            goToUrl($scope.tabs[index].url);
         };
 
         $scope.activateTab = function(index) {
@@ -171,10 +160,6 @@
                     $scope.teams[i].isActive = false;
                 }
             });
-        }
-
-        function goToUrl(url) {
-            $location.url(url);
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {

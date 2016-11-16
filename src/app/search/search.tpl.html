@@ -2,11 +2,11 @@
     <div class="search-tabs">
         <div ng-repeat="tab in tabs"
              class="search-tabs__item"
-             ng-click="changeTab($index)"
+             ng-click="activateTab($index)"
              ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
     </div>
 
-    <div class="search__container" ng-controller="SearchCtrl">
+    <div class="search__container" ng-controller="SearchCtrl" ng-show="tabs[0].isActive">
         <div class="search__search-area">
             <div class="search__person" ng-show="teamMembers.length" ng-repeat="teamMember in teamMembers">
                 <div class="search__name">{{teamMember.name}}</div>
@@ -14,7 +14,6 @@
             </div>
 
             <typeahead items="items"
-                       prompt=""
                        title="name"
                        subtitle="abbreviation"
                        model="worker"
@@ -22,6 +21,10 @@
             ></typeahead>
             <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
         </div>
+
+    </div>
+
+    <div class="search__container" ng-controller="SearchCtrl" ng-show="tabs[1].isActive">
 
     </div>
 </div>

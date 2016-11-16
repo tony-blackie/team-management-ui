@@ -6,8 +6,7 @@ angular.module('awesome-app', [
     'ngSanitize',
     'templates-app',
     'awesome-app.common',
-    'awesome-app.home',
-    'awesome-app.list',
+    // 'awesome-app.home',
     'awesome-app.search'
 ]).
 config(['$urlRouterProvider', function($urlRouterProvider) {

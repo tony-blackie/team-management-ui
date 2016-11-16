@@ -14,7 +14,6 @@
             restrict: 'AEC',
             scope: {
                 items: "=",
-                prompt: '@',
                 title: '@',
                 subtitle: '@',
                 model: '=',
@@ -30,7 +29,7 @@
                     scope.$emit('chosenTeamMember', selectedItem);
                 };
                 scope.current = 0;
-                scope.selected = true; // hides the list initially
+                scope.selected = true; // hides the tableList initially
                 window.scope = scope;
                 scope.isShown = $filter('model')(scope.items);
                 scope.isCurrent = function(index) {
