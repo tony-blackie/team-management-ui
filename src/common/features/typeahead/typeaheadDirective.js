@@ -5,9 +5,9 @@
         .module('awesome-app.common.features.typeahead', ['awesome-app.search'])
         .directive('typeahead', typeahead);
 
-    typeahead.$inject = ['SearchService', '$timeout'];
+    typeahead.$inject = ['SearchService', '$timeout', '$filter'];
 
-    function typeahead(SearchService, $timeout) {
+    function typeahead(SearchService, $timeout, $filter) {
         var directive;
 
         directive =  {
@@ -31,6 +31,8 @@
                 };
                 scope.current = 0;
                 scope.selected = true; // hides the list initially
+                window.scope = scope;
+                scope.isShown = $filter('model')(scope.items);
                 scope.isCurrent = function(index) {
                     return scope.current == index;
                 };
@@ -43,4 +45,6 @@
 
         return directive;
     }
+
+
 })();

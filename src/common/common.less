@@ -184,18 +184,8 @@
   line-height: 2.3rem;
 }
 
-.search__input {
-  float: left;
-  margin: 10px 0 0 -1px;
-}
-
 .search__refresh {
-  margin: 10px 0 0 5px;
-}
-
-.typeahead__items {
-  border: 1px solid lightgrey;
-  clear: both;
+  margin: 19px 0 0 5px;
 }
 
 .search__remove {
@@ -208,4 +198,32 @@
 .search__name {
   float: left;
   width: 84%;
+}
+
+.typeahead__wrapper {
+  display: inline-block;
+  position: relative;
+  width: 194px;
+  height: 63px;
+}
+
+.typeahead__input {
+  float: left;
+  margin: 19px 0 0 -1px;
+  position: absolute;
+  border-collapse: collapse;
+}
+
+.typeahead__items {
+  border: 1px solid lightgrey;
+  clear: both;
+  width: 174px;
+  position: absolute;
+  top: 26px;
+  margin: 19px 0 0 -1px;
+  border-collapse: collapse;
+}
+
+.typeahead__item {
+  clear: both;
 }
