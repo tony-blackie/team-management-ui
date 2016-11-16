@@ -8,7 +8,7 @@
     TableListCtrl.$inject = ['$scope'];
 
     function TableListCtrl($scope) {
-        
+
     }
 })();
 

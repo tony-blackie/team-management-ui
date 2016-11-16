@@ -7,7 +7,7 @@
 
     function model() {
         return function(element, scope) {
-            return element.indexOf(scope.model) !== -1 ? element : false;
+            return //element.indexOf(scope.model) !== -1 ? element : false;
         }
     }
 })();
