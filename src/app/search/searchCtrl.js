@@ -38,6 +38,7 @@
         };
 
         $scope.removeTeamMember = function(index) {
+            $scope.teamMembers = angular.copy($scope.teamMembers);
             $scope.teamMembers.splice(index, 1);
         };
 
