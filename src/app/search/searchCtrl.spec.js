@@ -60,22 +60,16 @@
             it('should mock request for staff.json', function() {
                 $scope.items = [];
                 SearchService = {
-                    getTypeaheadData: function(url) {
-                        return {
-                            then: function(callback) {
-                                callback({name: 'Ross Gellar'});
-                            }
-                        };
-                    }
+                    getTypeaheadData: function() {}
                 };
+
                 spyOn($rootScope, '$broadcast').and.callThrough();
 
                 $rootScope.$broadcast('changeActiveTeam');
-                $httpBackend.whenGET('staff.json').respond({then: function() {}});
-                $httpBackend.expectGET('staff.json');
+                $httpBackend.whenGET('staff.json').respond(
+                    SearchService.getTypeaheadData());
                 $scope.$digest();
 
-                expect($scope.items).toEqual([{name: 'Ross Gellar'}]);
 
             });
         });

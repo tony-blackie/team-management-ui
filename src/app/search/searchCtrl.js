@@ -38,10 +38,8 @@
         };
 
         $scope.getTypeaheadData = function() {
-            console.log('outer');
             SearchService.getTypeaheadData('staff.json').then(function(data) {
                 $scope.items = data;
-                console.log('inner');
             });
         };
 
