@@ -30,7 +30,7 @@
 
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = angular.copy(SearchService.getWorkers());
-            $scope.isAnyTeamActive = !!$scope.teamMembers.length;
+            $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
         });
 
         $scope.$on('removeTeamMember', function(event, members) {
@@ -53,7 +53,13 @@
         };
 
         $scope.addTeamMember = function(index) {
-            $scope.teamMembers.push($scope.items[index]);
+            var alreadyInTeam = SearchService.findItemInArray($scope.items[index], $scope.teamMembers);
+            $scope.teamMembers = angular.copy($scope.teamMembers);
+
+            if (!alreadyInTeam) {
+                $scope.teamMembers.push($scope.items[index]);
+            }
+
             $scope.$emit('saveSingleTeamMember', $scope.items[index]);
             if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
                 $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;

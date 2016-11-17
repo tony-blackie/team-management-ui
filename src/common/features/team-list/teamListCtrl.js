@@ -151,6 +151,9 @@
 
         function saveWorkersToService(index) {
             SearchService.setWorkers($scope.teams[index].members);
+            SearchService.isAnyTeamActive = $scope.teams.some(function(elem, index, array) {
+                return elem.isActive === true;
+            });
             $scope.currentActiveTeamIndex = index;
         }
 

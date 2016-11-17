@@ -11,6 +11,7 @@
         var factory = this;
 
         factory.workers = [];
+        factory.isAnyTeamActive = null;
 
         angular.extend(factory, {
             getWorkers: getWorkers,
