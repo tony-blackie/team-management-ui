@@ -55,8 +55,8 @@
         $scope.addTeamMember = function(index) {
             $scope.teamMembers.push($scope.items[index]);
             $scope.$emit('saveSingleTeamMember', $scope.items[index]);
-            if ($scope.teamMembers[index].isFeedbackShown || $scope.teamMembers[index].isFeedbackShown === false) {
-                $scope.teamMembers[index].isFeedbackShown = !$scope.teamMembers[index].isFeedbackShown;
+            if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
+                $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
             }
         };
 
