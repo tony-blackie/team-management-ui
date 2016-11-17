@@ -6,28 +6,46 @@
              ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
     </div>
 
-    <div class="search__container" ng-controller="SearchCtrl" ng-show="tabs[0].isActive">
-        <div class="search__search-area" ng-show="isAnyTeamActive">
-            <div class="search__person" ng-show="teamMembers.length" ng-repeat="teamMember in teamMembers">
-                <div class="search__name">{{teamMember.name}}</div>
-                <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
+    <div ng-controller="SearchCtrl">
+        <div class="search__container" ng-show="tabs[0].isActive">
+            <div class="search__search-area" ng-show="isAnyTeamActive">
+                <div class="search__person" ng-show="teamMembers.length" ng-repeat="teamMember in teamMembers">
+                    <div class="search__name">{{teamMember.name}}</div>
+                    <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
+                </div>
+
+                <typeahead items="items"
+                           title="name"
+                           subtitle="abbreviation"
+                           model="worker"
+                           on-select="onItemSelected()"
+                ></typeahead>
+                <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
             </div>
+            <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
 
-            <typeahead items="items"
-                       title="name"
-                       subtitle="abbreviation"
-                       model="worker"
-                       on-select="onItemSelected()"
-            ></typeahead>
-            <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
         </div>
-        <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
 
+        <div class="search__container search__container_list" ng-show="tabs[1].isActive">
+            <table class="table">
+                <tbody class="table__body">
+                    <tr class="table__row">
+                        <th class="table__cell">Name</th>
+                        <th class="table__cell">Job Title</th>
+                        <th class="table__cell">Age</th>
+                        <th class="table__cell">Grade</th>
+                    </tr>
+                    <tr class="table__row" ng-repeat="worker in items" ng-click="addTeamMember($index)">
+                        <td class="table__cell">{{worker.name}}</td>
+                        <td class="table__cell">{{worker.job}}</td>
+                        <td class="table__cell">{{worker.age}}</td>
+                        <td class="table__cell">{{worker.grade}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 
-    <div class="search__container" ng-controller="SearchCtrl" ng-show="tabs[1].isActive">
-
-    </div>
 </div>
 
 <div class="team-container">

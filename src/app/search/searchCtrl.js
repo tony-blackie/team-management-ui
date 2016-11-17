@@ -48,6 +48,10 @@
             $scope.teamMembers.splice(index, 1);
         };
 
+        $scope.addTeamMember = function(index) {
+            // $scope.teamMembers.push();
+        };
+
         $scope.getTypeaheadData();
     }
 

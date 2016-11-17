@@ -69,8 +69,6 @@
                 $httpBackend.whenGET('staff.json').respond(
                     SearchService.getTypeaheadData());
                 $scope.$digest();
-
-
             });
         });
     });
