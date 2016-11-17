@@ -9,7 +9,9 @@
     <div ng-controller="SearchCtrl">
         <div class="search__container" ng-show="tabs[0].isActive">
             <div class="search__search-area" ng-show="isAnyTeamActive">
-                <div class="search__person" ng-show="teamMembers.length" ng-repeat="teamMember in teamMembers">
+                <div class="search__person"
+                     ng-show="teamMembers.length"
+                     ng-repeat="teamMember in teamMembers track by $index">
                     <div class="search__name">{{teamMember.name}}</div>
                     <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
                 </div>

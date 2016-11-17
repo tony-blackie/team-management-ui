@@ -16,7 +16,8 @@
             getWorkers: getWorkers,
             setWorkers: setWorkers,
             getAllWorkers: getAllWorkers,
-            getTypeaheadData: getTypeaheadData
+            getTypeaheadData: getTypeaheadData,
+            findItemInArray: findItemInArray
         });
 
         return factory;
@@ -53,6 +54,18 @@
                 .then(function(response) {
                     return response.data;
                 });
+        }
+
+        function findItemInArray(item, array) {
+            var alreadyInArray = false;
+
+            angular.forEach(array, function(arrayElement) {
+                if (item.name === arrayElement.name) {
+                    alreadyInArray = true;
+                }
+            });
+
+            return alreadyInArray;
         }
     }
 })();

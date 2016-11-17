@@ -167,18 +167,13 @@
         });
 
         $scope.$on('saveSingleTeamMember', function(event, member) {
-            var alreadyInTeam = false;
-
-            angular.forEach($scope.teams[$scope.currentActiveTeamIndex].members, function(existingMember) {
-                if (member.name === existingMember.name) {
-                    alreadyInTeam = true;
-                }
-
-            });
+            var alreadyInTeam = SearchService.findItemInArray(member, $scope.teams[$scope.currentActiveTeamIndex].members);
 
             if (!alreadyInTeam) {
                 $scope.teams[$scope.currentActiveTeamIndex].members.push(member);
             }
         });
+
+
     }
 })();

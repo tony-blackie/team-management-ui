@@ -11,17 +11,21 @@
         $scope.isAnyTeamActive = false;
 
         $scope.$on('chosenTeamMember', function(event, worker) {
+            var alreadyInTeam = SearchService.findItemInArray(worker, $scope.teamMembers);
             $scope.teamMembers = angular.copy($scope.teamMembers);
-            $scope.teamMembers.push(
-                {
-                    name: worker.name,
-                    age: worker.age,
-                    job: worker.job,
-                    id: worker.id,
-                    grade: worker.grade
-                }
-            );
-            $scope.worker = '';
+
+            if (!alreadyInTeam) {
+                $scope.teamMembers.push(
+                    {
+                        name: worker.name,
+                        age: worker.age,
+                        job: worker.job,
+                        id: worker.id,
+                        grade: worker.grade
+                    }
+                );
+                $scope.worker = '';
+            }
         });
 
         $scope.$on('changeActiveTeam', function() {
@@ -49,7 +53,7 @@
         };
 
         $scope.addTeamMember = function(index) {
-            // $scope.teamMembers.push($scope.items[index]);
+            $scope.teamMembers.push($scope.items[index]);
             $scope.$emit('saveSingleTeamMember', $scope.items[index]);
             $scope.teamMembers[index].isFeedbackShown = !$scope.teamMembers[index].isFeedbackShown;
         };
