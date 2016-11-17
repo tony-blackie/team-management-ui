@@ -49,7 +49,9 @@
         };
 
         $scope.addTeamMember = function(index) {
-            // $scope.teamMembers.push();
+            // $scope.teamMembers.push($scope.items[index]);
+            $scope.$emit('saveSingleTeamMember', $scope.items[index]);
+            $scope.teamMembers[index].isFeedbackShown = !$scope.teamMembers[index].isFeedbackShown;
         };
 
         $scope.getTypeaheadData();

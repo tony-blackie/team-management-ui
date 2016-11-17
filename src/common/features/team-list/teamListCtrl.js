@@ -165,5 +165,20 @@
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
             $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
         });
+
+        $scope.$on('saveSingleTeamMember', function(event, member) {
+            var alreadyInTeam = false;
+
+            angular.forEach($scope.teams[$scope.currentActiveTeamIndex].members, function(existingMember) {
+                if (member.name === existingMember.name) {
+                    alreadyInTeam = true;
+                }
+
+            });
+
+            if (!alreadyInTeam) {
+                $scope.teams[$scope.currentActiveTeamIndex].members.push(member);
+            }
+        });
     }
 })();
