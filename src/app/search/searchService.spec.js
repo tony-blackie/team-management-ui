@@ -30,8 +30,18 @@
             expect(SearchService.workers).toEqual([]);
         });
 
-        it ('should get workers', function() {
+        it('should return true if array already has the item', function() {
+            var array = [{name: 'Yukihiro Matsumoto'}];
+            var item = {name: 'Yukihiro Matsumoto'};
 
+            expect(SearchService.findItemInArray(item, array)).toBe(true);
+        });
+
+        it('should return false if array does not contain the item', function() {
+            var array = [{name: 'Douglas Crockford'}];
+            var item = {name: 'Yukihiro Matsumoto'};
+
+            expect(SearchService.findItemInArray(item, array)).toBe(false);
         });
     });
 
