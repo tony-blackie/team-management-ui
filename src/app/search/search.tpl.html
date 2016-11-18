@@ -30,6 +30,10 @@
         </div>
 
         <div class="search__container search__container_list" ng-show="tabs[1].isActive">
+            <div class="filter">
+                <input class="filter__input" type="text" ng-model="nameFilter" placeholder="Filter"/>
+            </div>
+
             <table class="table" ng-show="isAnyTeamActive">
                 <tbody class="table__body">
                     <thead class="table__row">
@@ -38,7 +42,7 @@
                         <th class="table__cell">Age</th>
                         <th class="table__cell">Grade</th>
                     </thead>
-                    <tbody class="table__row" ng-repeat="worker in items track by $index" ng-click="addTeamMember($index)">
+                    <tbody class="table__row" ng-repeat="worker in items | filter:nameFilter track by $index" ng-click="addTeamMember($index)">
                         <tr>
                             <td class="table__cell">{{worker.name}}</td>
                             <td class="table__cell">{{worker.job}}</td>
