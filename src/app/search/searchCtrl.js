@@ -60,10 +60,18 @@
                 $scope.teamMembers.push($scope.items[index]);
             }
 
+            saveSingleTeamMember(index);
+        };
+
+        function saveSingleTeamMember(index) {
             $scope.$emit('saveSingleTeamMember', $scope.items[index]);
             if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
                 $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
             }
+        }
+
+        $scope.onMouseover = function() {
+
         };
 
         $scope.getTypeaheadData();

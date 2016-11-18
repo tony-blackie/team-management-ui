@@ -70,6 +70,39 @@
                     SearchService.getTypeaheadData());
                 $scope.$digest();
             });
+
+            describe('addTeamMember tests', function() {
+
+                it('should call findItemInArray', function() {
+                    spyOn(SearchService, 'findItemInArray');
+                    $scope.items = [{}, {name: 'Matz'}];
+                    $scope.teamMembers = [{name: 'Doug'}];
+
+                    $scope.addTeamMember(1);
+
+                    expect(SearchService.findItemInArray).toHaveBeenCalledWith({name: 'Matz'}, [{name: 'Doug'}]);
+                });
+
+                it('should add item to teamMembers array', function() {
+                    spyOn(SearchService, 'findItemInArray').and.returnValue(false);
+                    $scope.items = [{}, {name: 'Matz'}];
+                    $scope.teamMembers = [{name: 'Doug'}];
+
+                    $scope.addTeamMember(1);
+
+                    expect($scope.teamMembers).toEqual([{name: 'Doug'}, {name: 'Matz'}]);
+                });
+
+                it('should not add iteam if it is already in array', function() {
+                    spyOn(SearchService, 'findItemInArray').and.returnValue(true);
+                    $scope.items = [{}, {name: 'Matz'}];
+                    $scope.teamMembers = [{name: 'Doug'}];
+
+                    $scope.addTeamMember(1);
+
+                    expect($scope.teamMembers).toEqual([{name: 'Doug'}]);
+                });
+            });
         });
     });
 })();
