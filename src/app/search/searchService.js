@@ -16,7 +16,6 @@
         angular.extend(factory, {
             getWorkers: getWorkers,
             setWorkers: setWorkers,
-            getAllWorkers: getAllWorkers,
             getTypeaheadData: getTypeaheadData,
             findItemInArray: findItemInArray
         });
@@ -42,12 +41,6 @@
             });
 
             factory.workers = isEqual ? [] : team;
-        }
-
-        function getAllWorkers() {
-            $http.get('/staff.json').then(function(response) {
-                console.log(response);
-            });
         }
 
         function getTypeaheadData(url) {
