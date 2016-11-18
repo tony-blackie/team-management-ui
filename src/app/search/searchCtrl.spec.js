@@ -102,6 +102,54 @@
 
                     expect($scope.teamMembers).toEqual([{name: 'Doug'}]);
                 });
+
+                it('should call saveSingleTeamMember', function() {
+                    spyOn($scope, 'saveSingleTeamMember');
+                    $scope.items = [{}, {name: 'Matz'}];
+                    $scope.teamMembers = [{name: 'Doug'}];
+
+                    $scope.addTeamMember(1);
+
+                    expect($scope.saveSingleTeamMember).toHaveBeenCalledWith(1);
+                });
+            });
+
+            describe('test for saveSingleTeamMember', function() {
+                it('should emit saveSingleTeamMember event', function() {
+                    spyOn($scope, '$emit');
+                    $scope.items = [{}, {name: 'Ernest', isFeedbackShown: true}];
+
+                    $scope.saveSingleTeamMember(1);
+
+                    expect($scope.$emit).toHaveBeenCalledWith(
+                        'saveSingleTeamMember',
+                        {name: 'Ernest', isFeedbackShown: false}
+                    );
+                });
+
+                it('should toggle isFeedbackShown item if it is false', function() {
+                    spyOn($scope, '$emit');
+                    $scope.items = [{}, {name: 'Ernest', isFeedbackShown: false}];
+
+                    $scope.saveSingleTeamMember(1);
+
+                    expect($scope.$emit).toHaveBeenCalledWith(
+                        'saveSingleTeamMember',
+                        {name: 'Ernest', isFeedbackShown: true}
+                    );
+                });
+
+                it('should not break if isFeedbackShown flag is not defined', function() {
+                    spyOn($scope, '$emit');
+                    $scope.items = [{}, {name: 'Ernest'}];
+
+                    $scope.saveSingleTeamMember(1);
+
+                    expect($scope.$emit).toHaveBeenCalledWith(
+                        'saveSingleTeamMember',
+                        {name: 'Ernest'}
+                    );
+                });
             });
         });
     });

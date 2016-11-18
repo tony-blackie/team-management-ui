@@ -52,6 +52,13 @@
             $scope.teamMembers.splice(index, 1);
         };
 
+        $scope.saveSingleTeamMember = function(index) {
+            $scope.$emit('saveSingleTeamMember', $scope.items[index]);
+            if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
+                $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
+            }
+        };
+
         $scope.addTeamMember = function(index) {
             var alreadyInTeam = SearchService.findItemInArray($scope.items[index], $scope.teamMembers);
             $scope.teamMembers = angular.copy($scope.teamMembers);
@@ -60,18 +67,7 @@
                 $scope.teamMembers.push($scope.items[index]);
             }
 
-            saveSingleTeamMember(index);
-        };
-
-        function saveSingleTeamMember(index) {
-            $scope.$emit('saveSingleTeamMember', $scope.items[index]);
-            if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
-                $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
-            }
-        }
-
-        $scope.onMouseover = function() {
-
+            $scope.saveSingleTeamMember(index);
         };
 
         $scope.getTypeaheadData();
