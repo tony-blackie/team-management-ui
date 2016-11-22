@@ -151,6 +151,46 @@
                     );
                 });
             });
+
+            describe('tests for showTooltip', function() {
+                it('should changeTooltip flag', function() {
+                    $scope.teamMembers = [
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: false
+                        }
+                    ];
+
+                    $scope.showTooltip(2);
+
+                    expect($scope.teamMembers[2].isTooltipShown).toBe(true);
+                });
+            });
+
+            describe('tests for hideTooltip', function() {
+                it('should changeTooltip flag', function() {
+                    $scope.teamMembers = [
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: true
+                        },
+                        {
+                            isTooltipShown: false
+                        }
+                    ];
+
+                    $scope.hideTooltip(1);
+
+                    expect($scope.teamMembers[1].isTooltipShown).toBe(false);
+                });
+            });
         });
     });
 })();
