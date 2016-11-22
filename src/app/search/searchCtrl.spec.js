@@ -166,7 +166,7 @@
                         }
                     ];
 
-                    $scope.showTooltip(2);
+                    $scope.showMemberTooltip(2);
 
                     expect($scope.teamMembers[2].isTooltipShown).toBe(true);
                 });
@@ -186,9 +186,49 @@
                         }
                     ];
 
-                    $scope.hideTooltip(1);
+                    $scope.hideMemberTooltip(1);
 
                     expect($scope.teamMembers[1].isTooltipShown).toBe(false);
+                });
+            });
+
+            describe('tests for showTooltip', function() {
+                it('should changeTooltip flag', function() {
+                    $scope.items = [
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: false
+                        }
+                    ];
+
+                    $scope.showWorkerTooltip(2);
+
+                    expect($scope.items[2].isTooltipShown).toBe(true);
+                });
+            });
+
+            describe('tests for hideTooltip', function() {
+                it('should changeTooltip flag', function() {
+                    $scope.items = [
+                        {
+                            isTooltipShown: false
+                        },
+                        {
+                            isTooltipShown: true
+                        },
+                        {
+                            isTooltipShown: false
+                        }
+                    ];
+
+                    $scope.hideWorkerTooltip(1);
+
+                    expect($scope.items[1].isTooltipShown).toBe(false);
                 });
             });
         });
