@@ -21,12 +21,15 @@
                         age: worker.age,
                         job: worker.job,
                         id: worker.id,
-                        grade: worker.grade
+                        grade: worker.grade,
+                        isTooltipShown: false
                     }
                 );
                 $scope.worker = '';
             }
         });
+
+        $scope.tooltipsShown = [];
 
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = angular.copy(SearchService.getWorkers());
@@ -68,6 +71,14 @@
             }
 
             $scope.saveSingleTeamMember(index);
+        };
+
+        $scope.showTooltip = function(index) {
+            $scope.teamMembers[index].isTooltipShown = true;
+        };
+
+        $scope.hideTooltip = function(index) {
+            $scope.teamMembers[index].isTooltipShown = false;
         };
 
         $scope.getTypeaheadData();

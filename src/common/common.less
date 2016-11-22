@@ -247,15 +247,20 @@
 
 .tooltip-wrapper {
   position: relative;
-  display: none;
 }
 
 .tooltip-wrapper__message {
   position: absolute;
-  width: 100px;
-  top: 30px;
+  z-index: 10;
+  border-radius: 12px 12px;
+  text-align: center;
+  width: 180px;
+  top: 50px;
   background-color: white;
   border: 1px solid lightgray;
+  -webkit-box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
+  -moz-box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
+  box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
 }
 
 .filter {
