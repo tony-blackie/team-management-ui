@@ -247,6 +247,12 @@
 
 .tooltip-wrapper {
   position: relative;
+
+  &_table {
+    display: block;
+    top: -55px;
+    position: relative;
+  }
 }
 
 .tooltip-wrapper__message {
@@ -255,12 +261,16 @@
   border-radius: 12px 12px;
   text-align: center;
   width: 180px;
-  top: 50px;
   background-color: white;
   border: 1px solid lightgray;
   -webkit-box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
   -moz-box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
   box-shadow: 10px 10px 49px -1px rgba(0,0,0,0.75);
+
+  &_margin-top {
+    top: 50px;
+    display: block;
+  }
 }
 
 .filter {

@@ -15,7 +15,8 @@
             templateUrl: '../common/features/tooltip/tooltip.html',
             scope: {
                 grade: '=',
-                job: '='
+                job: '=',
+                search: '@'
             },
             link: function(scope, elem, attrs) {
 

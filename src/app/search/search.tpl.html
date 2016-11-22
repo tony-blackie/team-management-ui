@@ -12,15 +12,15 @@
                 <div class="search__person"
                      ng-show="teamMembers.length"
                      ng-repeat="teamMember in teamMembers track by $index"
-                     ng-mouseenter="showTooltip($index)"
-                     ng-mouseleave="hideTooltip($index)">
+                     ng-mouseenter="showMemberTooltip($index)"
+                     ng-mouseleave="hideMemberTooltip($index)">
                     <div class="search__name">{{teamMember.name}}</div>
                     <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
                     <tooltip class="tooltip-wrapper"
                              grade="teamMember.grade"
                              job="teamMember.job"
+                             search="true"
                              ng-show="teamMember.isTooltipShown">
-
                     </tooltip>
                 </div>
 
@@ -49,7 +49,11 @@
                         <th class="table__cell">Age</th>
                         <th class="table__cell">Grade</th>
                     </thead>
-                    <tbody class="table__row" ng-repeat="worker in items | filter:nameFilter track by $index" ng-click="addTeamMember($index)">
+                    <tbody class="table__row"
+                           ng-repeat="worker in items | filter:nameFilter track by $index"
+                           ng-click="addTeamMember($index)"
+                           ng-mouseenter="showWorkerTooltip($index)"
+                           ng-mouseleave="hideWorkerTooltip($index)">
                         <tr>
                             <td class="table__cell">{{worker.name}}</td>
                             <td class="table__cell">{{worker.job}}</td>
@@ -62,6 +66,14 @@
                             </td>
 
                         </tr>
+                        <tr
+                                tooltip
+                                class="tooltip-wrapper_table"
+                                grade="worker.grade"
+                                job="worker.job"
+                                ng-show="worker.isTooltipShown">
+                        </tr>
+
                     </tbody>
                 </tbody>
             </table>

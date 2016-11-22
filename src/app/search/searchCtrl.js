@@ -73,12 +73,20 @@
             $scope.saveSingleTeamMember(index);
         };
 
-        $scope.showTooltip = function(index) {
+        $scope.showMemberTooltip = function(index) {
             $scope.teamMembers[index].isTooltipShown = true;
         };
 
-        $scope.hideTooltip = function(index) {
+        $scope.hideMemberTooltip = function(index) {
             $scope.teamMembers[index].isTooltipShown = false;
+        };
+
+        $scope.showWorkerTooltip = function(index) {
+            $scope.items[index].isTooltipShown = true;
+        };
+
+        $scope.hideWorkerTooltip = function(index) {
+            $scope.items[index].isTooltipShown = false;
         };
 
         $scope.getTypeaheadData();
