@@ -36,49 +36,49 @@
 
         </div>
 
-        <div class="search__container search__container_list" ng-show="tabs[1].isActive">
-            <div class="filter">
-                <input class="filter__input" type="text" ng-model="nameFilter" placeholder="Filter"/>
-            </div>
+        <!--<div class="search__container search__container_list" ng-show="tabs[1].isActive">-->
+            <!--<div class="filter">-->
+                <!--<input class="filter__input" type="text" ng-model="nameFilter" placeholder="Filter"/>-->
+            <!--</div>-->
 
-            <table class="table" ng-show="isAnyTeamActive">
-                <tbody class="table__body">
-                    <thead class="table__row">
-                        <th class="table__cell">Name</th>
-                        <th class="table__cell">Job Title</th>
-                        <th class="table__cell">Age</th>
-                        <th class="table__cell">Grade</th>
-                    </thead>
-                    <tbody class="table__row"
-                           ng-repeat="worker in items | filter:nameFilter track by $index"
-                           ng-click="addTeamMember($index)"
-                           ng-mouseenter="showWorkerTooltip($index)"
-                           ng-mouseleave="hideWorkerTooltip($index)">
-                        <tr>
-                            <td class="table__cell">{{worker.name}}</td>
-                            <td class="table__cell">{{worker.job}}</td>
-                            <td class="table__cell">{{worker.age}}</td>
-                            <td class="table__cell">{{worker.grade}}</td>
-                        </tr>
-                        <tr ng-show="worker.isFeedbackShown">
-                            <td colspan="4">
-                                <div class="table__feedback">{{worker.feedback}}</div>
-                            </td>
+            <!--<table class="table" ng-show="isAnyTeamActive">-->
+                <!--<tbody class="table__body">-->
+                    <!--<thead class="table__row">-->
+                        <!--<th class="table__cell">Name</th>-->
+                        <!--<th class="table__cell">Job Title</th>-->
+                        <!--<th class="table__cell">Age</th>-->
+                        <!--<th class="table__cell">Grade</th>-->
+                    <!--</thead>-->
+                    <!--<tbody class="table__row"-->
+                           <!--ng-repeat="worker in items | filter:nameFilter track by $index"-->
+                           <!--ng-click="addTeamMember($index)"-->
+                           <!--ng-mouseenter="showWorkerTooltip($index)"-->
+                           <!--ng-mouseleave="hideWorkerTooltip($index)">-->
+                        <!--<tr>-->
+                            <!--<td class="table__cell">{{worker.name}}</td>-->
+                            <!--<td class="table__cell">{{worker.job}}</td>-->
+                            <!--<td class="table__cell">{{worker.age}}</td>-->
+                            <!--<td class="table__cell">{{worker.grade}}</td>-->
+                        <!--</tr>-->
+                        <!--<tr ng-show="worker.isFeedbackShown">-->
+                            <!--<td colspan="4">-->
+                                <!--<div class="table__feedback">{{worker.feedback}}</div>-->
+                            <!--</td>-->
 
-                        </tr>
-                        <tr
-                                tooltip
-                                class="tooltip-wrapper_table"
-                                grade="worker.grade"
-                                job="worker.job"
-                                ng-show="worker.isTooltipShown">
-                        </tr>
+                        <!--</tr>-->
+                        <!--<tr-->
+                                <!--tooltip-->
+                                <!--class="tooltip-wrapper_table"-->
+                                <!--grade="worker.grade"-->
+                                <!--job="worker.job"-->
+                                <!--ng-show="worker.isTooltipShown">-->
+                        <!--</tr>-->
 
-                    </tbody>
-                </tbody>
-            </table>
-            <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
-        </div>
+                    <!--</tbody>-->
+                <!--</tbody>-->
+            <!--</table>-->
+            <!--<div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>-->
+        <!--</div>-->
     </div>
 
 </div>
