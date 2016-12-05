@@ -186,6 +186,10 @@
             ];
         }
 
+        function initialize() {
+            vm.initTabs();
+        }
+
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
             $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
         });
@@ -199,9 +203,5 @@
         });
 
         initialize();
-
-        function initialize() {
-            initTabs();
-        }
     }
 })();

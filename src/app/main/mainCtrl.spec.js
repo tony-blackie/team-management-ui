@@ -51,6 +51,14 @@
                 expect(spy.calledWith('/table-list')).toEqual(true);
                 expect(spy.calledWith('/search')).toEqual(true);
             });
+
+            it('should call initTabs when initialize is called', function() {
+                var spy = sinon.spy(controller, 'initTabs');
+
+                controller.initialize();
+
+                expect(controller.initTabs.calledOnce).toBe(true);
+            })
         });
     });
 })();
