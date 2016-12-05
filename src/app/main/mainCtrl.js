@@ -13,21 +13,13 @@
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
             saveWorkersToService: saveWorkersToService,
-            goToUrl: goToUrl
+            goToUrl: goToUrl,
+            determineCurrentTab: determineCurrentTab,
+            initTabs: initTabs,
+            initialize: initialize
         });
 
-        $scope.tabs = [
-            {
-                text: "Search",
-                isActive: true,
-                url: "/search"
-            },
-            {
-                text: "List",
-                isActive: false,
-                url: "/table-list"
-            }
-        ];
+        $scope.tabs = [];
 
         $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {
@@ -173,6 +165,27 @@
             $location.url(url);
         }
 
+        function determineCurrentTab(tab) {
+            var currentUrl = $location.url();
+
+            return tab === currentUrl;
+        }
+
+        function initTabs() {
+            return [
+                {
+                    text: "Search",
+                    isActive: vm.determineCurrentTab('/search'),
+                    url: "/search"
+                },
+                {
+                    text: "List",
+                    isActive: vm.determineCurrentTab('/table-list'),
+                    url: "/table-list"
+                }
+            ];
+        }
+
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
             $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
         });
@@ -184,5 +197,11 @@
                 $scope.teams[$scope.currentActiveTeamIndex].members.push(member);
             }
         });
+
+        initialize();
+
+        function initialize() {
+            initTabs();
+        }
     }
 })();
