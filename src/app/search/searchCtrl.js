@@ -9,6 +9,7 @@
 
     function SearchCtrl($scope, SearchService) {
         $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
+        $scope.teamMembers = SearchService.getWorkers();
 
         $scope.$on('chosenTeamMember', function(event, worker) {
             var alreadyInTeam = SearchService.findItemInArray(worker, $scope.teamMembers);
