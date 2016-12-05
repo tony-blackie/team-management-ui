@@ -187,7 +187,7 @@
         }
 
         function initialize() {
-            vm.initTabs();
+            $scope.tabs = vm.initTabs();
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
@@ -202,6 +202,6 @@
             }
         });
 
-        initialize();
+        vm.initialize();
     }
 })();
