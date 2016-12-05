@@ -10,6 +10,7 @@
     function TableListCtrl($scope, SearchService, $location) {
         $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
         $scope.items = [];
+        $scope.teamMembers = SearchService.getWorkers();
 
         $scope.getTypeaheadData = function() {
             SearchService.getTypeaheadData('staff.json').then(function(data) {

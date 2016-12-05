@@ -14,10 +14,8 @@
       });
 
       $scope = {};
-      $scope.$broadcast = function () {
-      };
-      $scope.$on = function () {
-      };
+      $scope.$broadcast = function () {};
+      $scope.$on = function () {};
       controller = $controller('TableListCtrl', {$scope: $scope});
     });
 

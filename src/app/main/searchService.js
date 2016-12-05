@@ -40,7 +40,7 @@
                 }
             });
 
-            factory.workers = isEqual ? [] : team;
+            factory.workers = team;
         }
 
         function getTypeaheadData(url) {
