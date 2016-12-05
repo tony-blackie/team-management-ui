@@ -3,7 +3,7 @@ module.exports = function(config){
 
     basePath : './',
 
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'sinon'],
 
     files : [
       'vendor/jquery/dist/jquery.js',
@@ -29,6 +29,7 @@ module.exports = function(config){
     plugins : [
       'karma-phantomjs-launcher',
       'karma-jasmine',
+      'karma-sinon',
       'karma-junit-reporter'
     ],
 
