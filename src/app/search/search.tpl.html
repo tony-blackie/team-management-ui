@@ -1,102 +1,29 @@
-<div class="search__wrapper">
-    <div class="search-tabs">
-        <div ng-repeat="tab in tabs"
-             class="search-tabs__item"
-             ng-click="activateTab($index)"
-             ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
-    </div>
-
-    <div ng-controller="SearchCtrl">
-        <div class="search__container" ng-show="tabs[0].isActive">
-            <div class="search__search-area" ng-show="isAnyTeamActive">
-                <div class="search__person"
-                     ng-show="teamMembers.length"
-                     ng-repeat="teamMember in teamMembers track by $index"
-                     ng-mouseenter="showMemberTooltip($index)"
-                     ng-mouseleave="hideMemberTooltip($index)">
-                    <div class="search__name">{{teamMember.name}}</div>
-                    <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
-                    <tooltip class="tooltip-wrapper"
-                             grade="teamMember.grade"
-                             job="teamMember.job"
-                             search="true"
-                             ng-show="teamMember.isTooltipShown">
-                    </tooltip>
-                </div>
-
-                <typeahead items="items"
-                           title="name"
-                           subtitle="abbreviation"
-                           model="worker"
-                           on-select="onItemSelected()"
-                ></typeahead>
-                <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
+<div>
+    <div class="search__container" ng-show="tabs[0].isActive">
+        <div class="search__search-area" ng-show="isAnyTeamActive">
+            <div class="search__person"
+                 ng-show="teamMembers.length"
+                 ng-repeat="teamMember in teamMembers track by $index"
+                 ng-mouseenter="showMemberTooltip($index)"
+                 ng-mouseleave="hideMemberTooltip($index)">
+                <div class="search__name">{{teamMember.name}}</div>
+                <div class="search__remove" ng-click="removeTeamMember($index)">X</div>
+                <tooltip class="tooltip-wrapper"
+                         grade="teamMember.grade"
+                         job="teamMember.job"
+                         search="true"
+                         ng-show="teamMember.isTooltipShown">
+                </tooltip>
             </div>
-            <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
 
+            <typeahead items="items"
+                       title="name"
+                       subtitle="abbreviation"
+                       model="worker"
+                       on-select="onItemSelected()"
+            ></typeahead>
+            <button class="search__refresh" ng-click="refreshTeamList()">Refresh</button>
         </div>
-
-        <!--<div class="search__container search__container_list" ng-show="tabs[1].isActive">-->
-            <!--<div class="filter">-->
-                <!--<input class="filter__input" type="text" ng-model="nameFilter" placeholder="Filter"/>-->
-            <!--</div>-->
-
-            <!--<table class="table" ng-show="isAnyTeamActive">-->
-                <!--<tbody class="table__body">-->
-                    <!--<thead class="table__row">-->
-                        <!--<th class="table__cell">Name</th>-->
-                        <!--<th class="table__cell">Job Title</th>-->
-                        <!--<th class="table__cell">Age</th>-->
-                        <!--<th class="table__cell">Grade</th>-->
-                    <!--</thead>-->
-                    <!--<tbody class="table__row"-->
-                           <!--ng-repeat="worker in items | filter:nameFilter track by $index"-->
-                           <!--ng-click="addTeamMember($index)"-->
-                           <!--ng-mouseenter="showWorkerTooltip($index)"-->
-                           <!--ng-mouseleave="hideWorkerTooltip($index)">-->
-                        <!--<tr>-->
-                            <!--<td class="table__cell">{{worker.name}}</td>-->
-                            <!--<td class="table__cell">{{worker.job}}</td>-->
-                            <!--<td class="table__cell">{{worker.age}}</td>-->
-                            <!--<td class="table__cell">{{worker.grade}}</td>-->
-                        <!--</tr>-->
-                        <!--<tr ng-show="worker.isFeedbackShown">-->
-                            <!--<td colspan="4">-->
-                                <!--<div class="table__feedback">{{worker.feedback}}</div>-->
-                            <!--</td>-->
-
-                        <!--</tr>-->
-                        <!--<tr-->
-                                <!--tooltip-->
-                                <!--class="tooltip-wrapper_table"-->
-                                <!--grade="worker.grade"-->
-                                <!--job="worker.job"-->
-                                <!--ng-show="worker.isTooltipShown">-->
-                        <!--</tr>-->
-
-                    <!--</tbody>-->
-                <!--</tbody>-->
-            <!--</table>-->
-            <!--<div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>-->
-        <!--</div>-->
-    </div>
-
-</div>
-
-<div class="team-container">
-    <div class="team-add-team">
-        <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
-        <button class="team-add-button" ng-click="addTeam()">+</button>
-    </div>
-    <div class="team-wrapper" ng-repeat="team in teams track by $index">
-        <div class="team-name"
-             ng-click="makeActive($index)"
-             ng-class="{'team-highlighted': team.isActive}">{{team.name}}</div>
-        <div class="member-wrapper" ng-show="team.isActive">
-            <div class="member" ng-repeat="member in team.members track by $index">
-                <div class="member__item">{{member.name}} - {{member.job}}</div>
-                <div class="member__delete" ng-click="deleteMember($index)">X</div>
-            </div>
-        </div>
+        <div ng-hide="isAnyTeamActive">Select a team in the right tab to add members</div>
     </div>
 </div>

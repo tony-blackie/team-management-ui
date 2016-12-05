@@ -1,7 +1,7 @@
 (function() {
     'use strict';
 
-    angular.module('awesome-app.search', ['ui.router'])
+    angular.module('awesome-app.search', ['ui.router', 'awesome-app.main'])
         .config(function config($stateProvider) {
             $stateProvider
                 .state('main', {
@@ -15,7 +15,7 @@
                 })
                 .state('main.list', {
                     url: '/table-list',
-                    controller: 'ListCtrl',
+                    controller: 'TableListCtrl',
                     templateUrl: 'tableList/table-list.tpl.html'
                 });
     });
