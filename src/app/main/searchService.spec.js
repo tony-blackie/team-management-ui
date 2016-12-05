@@ -3,7 +3,7 @@
     describe('SearchService', function() {
         var SearchService;
         beforeEach(function() {
-            module('awesome-app.search');
+            module('awesome-app.main');
 
             inject(function(_SearchService_) {
                 SearchService = _SearchService_;

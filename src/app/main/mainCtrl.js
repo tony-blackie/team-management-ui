@@ -5,24 +5,27 @@
         .module('awesome-app.main')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['$scope'];
+    MainCtrl.$inject = ['$scope', '$location', 'SearchService'];
 
-    function MainCtrl($scope) {
+    function MainCtrl($scope, $location, SearchService) {
         var vm = this;
 
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
-            saveWorkersToService: saveWorkersToService
+            saveWorkersToService: saveWorkersToService,
+            goToUrl: goToUrl
         });
 
         $scope.tabs = [
             {
                 text: "Search",
-                isActive: true
+                isActive: true,
+                url: "/search"
             },
             {
                 text: "List",
-                isActive: false
+                isActive: false,
+                url: "/table-list"
             }
         ];
 
@@ -35,6 +38,7 @@
         $scope.activateTab = function(index) {
             $scope.deactivateAllTabs();
             $scope.tabs[index].isActive = true;
+            vm.goToUrl($scope.tabs[index].url);
         };
 
         $scope.teams = [
@@ -163,6 +167,10 @@
                     $scope.teams[i].isActive = false;
                 }
             });
+        }
+
+        function goToUrl(url) {
+            $location.url(url);
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {

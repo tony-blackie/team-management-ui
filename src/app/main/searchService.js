@@ -2,7 +2,7 @@
     "use strict";
 
     angular
-        .module('awesome-app.search')
+        .module('awesome-app.main')
         .factory('SearchService', SearchService);
 
     SearchService.$inject = ['$http'];
