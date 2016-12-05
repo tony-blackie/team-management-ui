@@ -9,10 +9,12 @@
                     templateUrl: 'search/main.tpl.html'
                 })
                 .state('main.search', {
+                    url: '/search',
                     controller: 'SearchCtrl',
                     templateUrl: 'search/search.tpl.html'
                 })
                 .state('main.list', {
+                    url: '/table-list',
                     controller: 'ListCtrl',
                     templateUrl: 'tableList/table-list.tpl.html'
                 });
