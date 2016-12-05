@@ -8,7 +8,7 @@
     SearchCtrl.$inject = ['$scope', 'SearchService'];
 
     function SearchCtrl($scope, SearchService) {
-        $scope.isAnyTeamActive = false;
+        $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
 
         $scope.$on('chosenTeamMember', function(event, worker) {
             var alreadyInTeam = SearchService.findItemInArray(worker, $scope.teamMembers);
@@ -29,8 +29,6 @@
             }
         });
 
-        $scope.tooltipsShown = [];
-
         $scope.$on('changeActiveTeam', function() {
             $scope.teamMembers = angular.copy(SearchService.getWorkers());
             $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
@@ -44,33 +42,9 @@
             $scope.$emit('saveTeamMembers', $scope.teamMembers);
         };
 
-        $scope.getTypeaheadData = function() {
-            SearchService.getTypeaheadData('staff.json').then(function(data) {
-                $scope.items = data;
-            });
-        };
-
         $scope.removeTeamMember = function(index) {
             $scope.teamMembers = angular.copy($scope.teamMembers);
             $scope.teamMembers.splice(index, 1);
-        };
-
-        $scope.saveSingleTeamMember = function(index) {
-            $scope.$emit('saveSingleTeamMember', $scope.items[index]);
-            if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
-                $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
-            }
-        };
-
-        $scope.addTeamMember = function(index) {
-            var alreadyInTeam = SearchService.findItemInArray($scope.items[index], $scope.teamMembers);
-            $scope.teamMembers = angular.copy($scope.teamMembers);
-
-            if (!alreadyInTeam) {
-                $scope.teamMembers.push($scope.items[index]);
-            }
-
-            $scope.saveSingleTeamMember(index);
         };
 
         $scope.showMemberTooltip = function(index) {
@@ -80,16 +54,6 @@
         $scope.hideMemberTooltip = function(index) {
             $scope.teamMembers[index].isTooltipShown = false;
         };
-
-        $scope.showWorkerTooltip = function(index) {
-            $scope.items[index].isTooltipShown = true;
-        };
-
-        $scope.hideWorkerTooltip = function(index) {
-            $scope.items[index].isTooltipShown = false;
-        };
-
-        $scope.getTypeaheadData();
     }
 
 })();
