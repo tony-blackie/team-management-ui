@@ -148,24 +148,6 @@
             $scope.$broadcast('removeTeamMember', $scope.teams[$scope.currentActiveTeamIndex].members);
         };
 
-        $scope.saveSingleTeamMember = function(index) {
-            $scope.$emit('saveSingleTeamMember', $scope.items[index]);
-            if ($scope.items[index].isFeedbackShown || $scope.items[index].isFeedbackShown === false) {
-                $scope.items[index].isFeedbackShown = !$scope.items[index].isFeedbackShown;
-            }
-        };
-
-        $scope.addTeamMember = function(index) {
-            var alreadyInTeam = SearchService.findItemInArray($scope.items[index], $scope.teamMembers);
-            $scope.teamMembers = angular.copy($scope.teamMembers);
-
-            if (!alreadyInTeam) {
-                $scope.teamMembers.push($scope.items[index]);
-            }
-
-            $scope.saveSingleTeamMember(index);
-        };
-
         function saveWorkersToService(index) {
             SearchService.setWorkers($scope.teams[index].members);
             SearchService.isAnyTeamActive = $scope.teams.some(function(elem, index, array) {

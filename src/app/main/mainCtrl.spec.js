@@ -13,7 +13,12 @@
         beforeEach(function () {
             module('awesome-app.main');
 
-            inject(function (_$controller_, _SearchService_, _$rootScope_, _$httpBackend_, _$location_) {
+            inject(function (_$controller_,
+                             _SearchService_,
+                             _$rootScope_,
+                             _$httpBackend_,
+                             _$location_) {
+
                 $controller = _$controller_;
                 SearchService = _SearchService_;
                 $rootScope = _$rootScope_;
