@@ -5,33 +5,17 @@
         .module('awesome-app.search')
         .controller('SearchCtrl', SearchCtrl);
 
-    SearchCtrl.$inject = ['$scope', 'SearchService', '$q'];
+    SearchCtrl.$inject = ['$scope', 'SearchService'];
 
-    function SearchCtrl($scope, SearchService, $q) {
+    function SearchCtrl($scope, SearchService) {
         $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
         $scope.teamMembers = SearchService.getWorkers();
 
         $scope.getTypeaheadData = function() {
-            // SearchService.getTypeaheadData('staff.json').then(function(data) {
-            //     $scope.items = data;
-            // });
-            var promise = getJson('staff.json');
-
-            promise.then(function(data) {
+            SearchService.getTypeaheadData('staff.json').then(function(data) {
                 $scope.items = data;
             });
         };
-
-        function getJson(path) {
-            var defered = $q.defer();
-
-            SearchService.getTypeaheadData(path)
-                .then(function(data) {
-                    defered.resolve(data);
-                });
-
-            return defered.promise;
-        }
 
         $scope.$on('chosenTeamMember', function(event, worker) {
             var alreadyInTeam = SearchService.findItemInArray(worker, $scope.teamMembers);
