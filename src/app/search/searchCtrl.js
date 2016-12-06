@@ -11,6 +11,12 @@
         $scope.isAnyTeamActive = SearchService.isAnyTeamActive;
         $scope.teamMembers = SearchService.getWorkers();
 
+        $scope.getTypeaheadData = function() {
+            SearchService.getTypeaheadData('staff.json').then(function(data) {
+                $scope.items = data;
+            });
+        };
+
         $scope.$on('chosenTeamMember', function(event, worker) {
             var alreadyInTeam = SearchService.findItemInArray(worker, $scope.teamMembers);
             $scope.teamMembers = angular.copy($scope.teamMembers);
@@ -55,6 +61,8 @@
         $scope.hideMemberTooltip = function(index) {
             $scope.teamMembers[index].isTooltipShown = false;
         };
+
+        $scope.getTypeaheadData();
     }
 
 })();
