@@ -5,18 +5,18 @@
         .module('awesome-app.main')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['$scope', '$location', 'SearchService'];
+    MainCtrl.$inject = ['$scope', '$location', 'SearchService', '$state'];
 
-    function MainCtrl($scope, $location, SearchService) {
+    function MainCtrl($scope, $location, SearchService, $state) {
         var vm = this;
 
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
             saveWorkersToService: saveWorkersToService,
-            goToUrl: goToUrl,
             determineCurrentTab: determineCurrentTab,
             initTabs: initTabs,
-            initialize: initialize
+            initialize: initialize,
+            goToState: goToState
         });
 
         $scope.tabs = [];
@@ -33,7 +33,8 @@
             if ($scope.currentActiveTeamIndex) {
                 vm.saveWorkersToService($scope.currentActiveTeamIndex);
             }
-            vm.goToUrl($scope.tabs[index].url);
+            vm.goToState($scope.tabs[index].stateName);
+
         };
 
         $scope.teams = [
@@ -164,10 +165,6 @@
             });
         }
 
-        function goToUrl(url) {
-            $location.url(url);
-        }
-
         function determineCurrentTab(tab) {
             var currentUrl = $location.url();
 
@@ -179,18 +176,22 @@
                 {
                     text: "Search",
                     isActive: vm.determineCurrentTab('/search'),
-                    url: "/search"
+                    stateName: "main.search"
                 },
                 {
                     text: "List",
                     isActive: vm.determineCurrentTab('/table-list'),
-                    url: "/table-list"
+                    stateName: "main.list"
                 }
             ];
         }
 
         function initialize() {
             $scope.tabs = vm.initTabs();
+        }
+
+        function goToState(stateName) {
+            $state.go(stateName);
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {

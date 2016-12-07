@@ -8,7 +8,8 @@
             controller,
             $httpBackend,
             $location,
-            sandbox;
+            sandbox,
+            $state;
 
         beforeEach(function () {
             module('awesome-app.main');
@@ -17,13 +18,15 @@
                              _SearchService_,
                              _$rootScope_,
                              _$httpBackend_,
-                             _$location_) {
+                             _$location_,
+                             _$state_) {
 
                 $controller = _$controller_;
                 SearchService = _SearchService_;
                 $rootScope = _$rootScope_;
                 $httpBackend = _$httpBackend_;
                 $location = _$location_;
+                $state = _$state_;
             });
 
             $scope = $rootScope.$new();
@@ -45,12 +48,12 @@
                         {
                             text: "Search",
                             isActive: false,
-                            url: "/search"
+                            stateName: "main.search"
                         },
                         {
                             text: "List",
                             isActive: true,
-                            url: "/table-list"
+                            stateName: "main.list"
                         }
                     ]
                 )
@@ -232,17 +235,21 @@
                 $scope.tabs = [
                     {
                         text: 'Search',
-                        isActive: true
+                        isActive: true,
+                        stateName: 'main.search'
                     },
                     {
                         text: 'List',
-                        isActive: false
+                        isActive: false,
+                        stateName: 'main.list'
                     }
                 ];
             });
 
             it('should call deactivateAllTabs when activateTab is called', function() {
                 spyOn($scope, 'deactivateAllTabs');
+
+                controller.goToState = function() {};
 
                 $scope.activateTab(1);
 
@@ -257,8 +264,22 @@
             });
 
             it('should activate tab on click', function() {
+                controller.goToState = function() {};
                 $scope.activateTab(1);
-                expect($scope.tabs).toEqual([{text: 'Search', isActive: false}, {text: 'List', isActive: true}]);
+                expect($scope.tabs).toEqual(
+                    [
+                        {
+                            text: 'Search',
+                            isActive: false,
+                            stateName: 'main.search'
+                        },
+                        {
+                            text: 'List',
+                            isActive: true,
+                            stateName: 'main.list'
+                        }
+                    ]
+                );
             });
         });
     });
