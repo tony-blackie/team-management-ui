@@ -20,6 +20,7 @@
         });
 
         $scope.tabs = [];
+        $scope.teams = [];
 
         $scope.deactivateAllTabs = function() {
             angular.forEach($scope.tabs, function(tab) {
@@ -36,83 +37,6 @@
             vm.goToState($scope.tabs[index].stateName);
 
         };
-
-        $scope.teams = [
-            {
-                name: "Friends",
-                members: [
-                    {
-                        name: 'Ross Gellar',
-                        job: 'paleonthologist'
-                    },
-                    {
-                        name: 'Chandler Bing',
-                        job: 'accountant'
-                    },
-                    {
-                        name: 'Joey Tribiani',
-                        job: 'actor'
-                    },
-                    {
-                        name: 'Rachel Green',
-                        job: 'fashion designer'
-                    },
-                    {
-                        name: 'Monika Gellar',
-                        job: 'shef'
-                    },
-                    {
-                        name: 'Phoebe Buffay',
-                        job: 'masseuse'
-                    }
-                ],
-                isActive: false
-            },
-            {
-                name: "Big Bang",
-                members: [
-                    {
-                        name: 'Sheldon Cooper',
-                        job: 'theoretical physicist'
-                    },
-                    {
-                        name: 'Leonard Hoffstader',
-                        job: 'theoretical physicist'
-                    },
-                    {
-                        name: 'Radjesh Kootrapali',
-                        job: 'theoretical physicist'
-                    },
-                    {
-                        name: 'Howard Wolowitz',
-                        job: 'rocket engineer'
-                    }
-                ],
-                isActive: false
-            },
-            {
-                name: "True Detective",
-                members: [
-                    {
-                        name: 'Ray Velcoro',
-                        job: 'detective'
-                    },
-                    {
-                        name: 'Frank Semyon',
-                        job: 'businessman'
-                    },
-                    {
-                        name: 'Ani Bezzerides',
-                        job: 'detective'
-                    },
-                    {
-                        name: 'Paul Woodrugh',
-                        job: 'detective'
-                    }
-                ],
-                isActive: false
-            }
-        ];
 
         $scope.currentActiveTeamIndex = null;
 
@@ -188,6 +112,7 @@
 
         function initialize() {
             $scope.tabs = vm.initTabs();
+            $scope.teams = SearchService.getTeams();
         }
 
         function goToState(stateName) {

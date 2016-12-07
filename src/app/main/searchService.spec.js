@@ -33,6 +33,17 @@
 
             expect(SearchService.findItemInArray(item, array)).toBe(false);
         });
+
+        it('should get teams', function() {
+            SearchService.teams = [{name: 'someteam1'},{name: 'someteam2'}];
+            expect(SearchService.getTeams()).toEqual([{name: 'someteam1'},{name: 'someteam2'}])
+        });
+
+        it('should set teams', function() {
+            SearchService.teams = [];
+            SearchService.setTeams([{name: 'someteam1'},{name: 'someteam2'}]);
+            expect(SearchService.teams).toEqual([{name: 'someteam1'},{name: 'someteam2'}]);
+        });
     });
 
 })();

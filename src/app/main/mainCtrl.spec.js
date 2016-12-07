@@ -226,6 +226,12 @@
                 expect($scope.teams[0].members.length).toBe(1);
                 expect($scope.teams[0].members[1]).not.toBeDefined();
             });
+
+            it('should call getTeams on SearchService when controller is initialized', function() {
+                spyOn(SearchService, 'getTeams');
+                controller.initialize();
+                expect(SearchService.getTeams).toHaveBeenCalled();
+            });
         });
 
         describe('tab functionality tests', function() {

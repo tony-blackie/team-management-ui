@@ -12,12 +12,90 @@
 
         factory.workers = [];
         factory.isAnyTeamActive = null;
+        factory.teams = [
+            {
+                name: "Friends",
+                members: [
+                    {
+                        name: 'Ross Gellar',
+                        job: 'paleonthologist'
+                    },
+                    {
+                        name: 'Chandler Bing',
+                        job: 'accountant'
+                    },
+                    {
+                        name: 'Joey Tribiani',
+                        job: 'actor'
+                    },
+                    {
+                        name: 'Rachel Green',
+                        job: 'fashion designer'
+                    },
+                    {
+                        name: 'Monika Gellar',
+                        job: 'shef'
+                    },
+                    {
+                        name: 'Phoebe Buffay',
+                        job: 'masseuse'
+                    }
+                ],
+                isActive: false
+            },
+            {
+                name: "Big Bang",
+                members: [
+                    {
+                        name: 'Sheldon Cooper',
+                        job: 'theoretical physicist'
+                    },
+                    {
+                        name: 'Leonard Hoffstader',
+                        job: 'theoretical physicist'
+                    },
+                    {
+                        name: 'Radjesh Kootrapali',
+                        job: 'theoretical physicist'
+                    },
+                    {
+                        name: 'Howard Wolowitz',
+                        job: 'rocket engineer'
+                    }
+                ],
+                isActive: false
+            },
+            {
+                name: "True Detective",
+                members: [
+                    {
+                        name: 'Ray Velcoro',
+                        job: 'detective'
+                    },
+                    {
+                        name: 'Frank Semyon',
+                        job: 'businessman'
+                    },
+                    {
+                        name: 'Ani Bezzerides',
+                        job: 'detective'
+                    },
+                    {
+                        name: 'Paul Woodrugh',
+                        job: 'detective'
+                    }
+                ],
+                isActive: false
+            }
+        ];
 
         angular.extend(factory, {
             getWorkers: getWorkers,
             setWorkers: setWorkers,
             getTypeaheadData: getTypeaheadData,
-            findItemInArray: findItemInArray
+            findItemInArray: findItemInArray,
+            getTeams: getTeams,
+            setTeams: setTeams
         });
 
         return factory;
@@ -60,6 +138,14 @@
             });
 
             return alreadyInArray;
+        }
+
+        function getTeams() {
+            return factory.teams;
+        }
+
+        function setTeams(teams) {
+            factory.teams = teams;
         }
     }
 })();
