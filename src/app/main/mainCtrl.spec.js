@@ -40,57 +40,13 @@
             it('should initialize $scope.tabs with data', function() {
                 var locationStub = sinon.stub($location, 'url');
                 locationStub.returns('/table-list');
+                spyOn(SearchService, 'getTabs');
 
                 controller = $controller('MainCtrl', {$scope: $scope});
 
-                expect($scope.tabs).toEqual(
-                    [
-                        {
-                            text: "Search",
-                            isActive: false,
-                            stateName: "main.search"
-                        },
-                        {
-                            text: "List",
-                            isActive: true,
-                            stateName: "main.list"
-                        }
-                    ]
-                )
-            });
-
-            it('should set active tab depending on $location service', function () {
-                var stub = sandbox.stub($location, 'url').returns('/table-list');
-
-                $scope.tabs = [
-                    {
-                        isActive: controller.determineCurrentTab('/search')
-                    },
-                    {
-                        isActive: controller.determineCurrentTab('/table-list')
-                    }
-                ];
-
-                expect($scope.tabs[0].isActive).toBe(false);
-                expect($scope.tabs[1].isActive).toBe(true);
-            });
-
-            it('should call determineCurrentTab on initialize', function() {
-                var spy = sandbox.spy(controller, 'determineCurrentTab');
-
                 controller.initialize();
 
-                expect(spy.calledWith('/table-list')).toEqual(true);
-                expect(spy.calledWith('/search')).toEqual(true);
-            });
-
-            it('should call initTabs when initialize is called', function() {
-                var spy = sandbox.spy(controller, 'initTabs');
-
-                controller.initialize();
-
-                expect(controller.initTabs.calledOnce).toBe(true);
-                sandbox.restore();
+                expect(SearchService.getTabs).toHaveBeenCalled();
             });
         });
 

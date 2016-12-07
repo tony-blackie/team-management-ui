@@ -5,13 +5,25 @@
         .module('awesome-app.main')
         .factory('SearchService', SearchService);
 
-    SearchService.$inject = ['$http'];
+    SearchService.$inject = ['$http', '$location', '$state'];
 
-    function SearchService($http) {
+    function SearchService($http, $location, $state) {
         var factory = this;
 
         factory.workers = [];
         factory.isAnyTeamActive = null;
+        factory.tabs = [
+            {
+                text: "Search",
+                isActive: $location.url() === '/search',
+                stateName: "main.search"
+            },
+            {
+                text: "List",
+                isActive: $location.url() === '/table-list',
+                stateName: "main.list"
+            }
+        ];
         factory.teams = [
             {
                 name: "Friends",
@@ -95,10 +107,30 @@
             getTypeaheadData: getTypeaheadData,
             findItemInArray: findItemInArray,
             getTeams: getTeams,
-            setTeams: setTeams
+            setTeams: setTeams,
+            getTabs: getTabs,
+            activateTab: activateTab,
+            deactivateAllTabs: deactivateAllTabs,
+            goToState: goToState
         });
 
         return factory;
+
+        function goToState(stateName) {
+            $state.go(stateName);
+        }
+
+        function activateTab(index) {
+            factory.deactivateAllTabs();
+            factory.tabs[index].isActive = true;
+            factory.goToState(factory.tabs[index].stateName);
+        }
+
+        function deactivateAllTabs() {
+            angular.forEach(factory.tabs, function(tab) {
+                tab.isActive = false;
+            });
+        }
 
         function getWorkers() {
             return factory.workers;
@@ -119,6 +151,10 @@
             });
 
             factory.workers = team;
+        }
+
+        function getTabs() {
+            return factory.tabs;
         }
 
         function getTypeaheadData(url) {

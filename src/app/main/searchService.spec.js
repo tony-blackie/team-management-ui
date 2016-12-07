@@ -1,14 +1,17 @@
 (function() {
 
     describe('SearchService', function() {
-        var SearchService;
+        var SearchService,
+            $location;
+
         beforeEach(function() {
             module('awesome-app.main');
 
-            inject(function(_SearchService_) {
+            inject(function(_SearchService_,
+                            _$location_) {
                 SearchService = _SearchService_;
+                $location = _$location_;
             });
-
         });
 
         it('should save workers', function() {
@@ -44,6 +47,18 @@
             SearchService.setTeams([{name: 'someteam1'},{name: 'someteam2'}]);
             expect(SearchService.teams).toEqual([{name: 'someteam1'},{name: 'someteam2'}]);
         });
+
+        it('should get tabs', function() {
+            SearchService.tabs = [{url: '/url'}, {url: '/anotherUrl'}];
+            expect(SearchService.getTabs()).toEqual([{url: '/url'}, {url: '/anotherUrl'}]);
+        });
+
+        // it('should set active tab depending on $location service', function () {
+        //     var stub = sinon.stub($location, 'url').returns('/table-list');
+        //
+        //     expect(SearchService.tabs[0].isActive).toBe(false);
+        //     expect(SearchService.tabs[1].isActive).toBe(true);
+        // });
     });
 
 })();

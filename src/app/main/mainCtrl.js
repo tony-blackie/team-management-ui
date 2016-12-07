@@ -5,37 +5,25 @@
         .module('awesome-app.main')
         .controller('MainCtrl', MainCtrl);
 
-    MainCtrl.$inject = ['$scope', '$location', 'SearchService', '$state'];
+    MainCtrl.$inject = ['$scope', 'SearchService'];
 
-    function MainCtrl($scope, $location, SearchService, $state) {
+    function MainCtrl($scope, SearchService) {
         var vm = this;
 
         angular.extend(vm, {
             deselectAllOtherTeams: deselectAllOtherTeams,
             saveWorkersToService: saveWorkersToService,
-            determineCurrentTab: determineCurrentTab,
-            initTabs: initTabs,
-            initialize: initialize,
-            goToState: goToState
+            initialize: initialize
         });
 
         $scope.tabs = [];
         $scope.teams = [];
 
-        $scope.deactivateAllTabs = function() {
-            angular.forEach($scope.tabs, function(tab) {
-                tab.isActive = false;
-            });
-        };
-
         $scope.activateTab = function(index) {
-            $scope.deactivateAllTabs();
-            $scope.tabs[index].isActive = true;
             if ($scope.currentActiveTeamIndex) {
                 vm.saveWorkersToService($scope.currentActiveTeamIndex);
             }
-            vm.goToState($scope.tabs[index].stateName);
-
+            SearchService.activateTab(index);
         };
 
         $scope.currentActiveTeamIndex = null;
@@ -89,34 +77,10 @@
             });
         }
 
-        function determineCurrentTab(tab) {
-            var currentUrl = $location.url();
-
-            return tab === currentUrl;
-        }
-
-        function initTabs() {
-            return [
-                {
-                    text: "Search",
-                    isActive: vm.determineCurrentTab('/search'),
-                    stateName: "main.search"
-                },
-                {
-                    text: "List",
-                    isActive: vm.determineCurrentTab('/table-list'),
-                    stateName: "main.list"
-                }
-            ];
-        }
 
         function initialize() {
-            $scope.tabs = vm.initTabs();
+            $scope.tabs = SearchService.getTabs();
             $scope.teams = SearchService.getTeams();
-        }
-
-        function goToState(stateName) {
-            $state.go(stateName);
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
