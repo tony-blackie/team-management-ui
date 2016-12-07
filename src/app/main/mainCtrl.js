@@ -11,7 +11,6 @@
         var vm = this;
 
         angular.extend(vm, {
-            deselectAllOtherTeams: deselectAllOtherTeams,
             saveWorkersToService: saveWorkersToService,
             initialize: initialize
         });
@@ -26,40 +25,27 @@
             SearchService.activateTab(index);
         };
 
-        $scope.currentActiveTeamIndex = null;
+        $scope.currentActiveTeamIndex = SearchService.getCurrentActiveTeamIndex();
 
         $scope.addTeam = function() {
             SearchService.addTeam($scope.teamName);
         };
 
         $scope.makeActive = function(index) {
-            $scope.teams[index].isActive = !$scope.teams[index].isActive;
-            vm.deselectAllOtherTeams(index);
-            vm.saveWorkersToService(index);
+            SearchService.makeActive(index);
             $scope.$broadcast('changeActiveTeam');
         };
 
         $scope.deleteMember = function(index) {
-            $scope.teams[$scope.currentActiveTeamIndex].members.splice(index, 1);
-            $scope.$broadcast('removeTeamMember', $scope.teams[$scope.currentActiveTeamIndex].members);
+            SearchService.deleteMember(index);
+            var teamMembers = SearchService.getActiveTeamMembers();
+            $scope.$broadcast('removeTeamMember', teamMembers);
         };
 
         function saveWorkersToService(index) {
-            SearchService.setWorkers($scope.teams[index].members);
-            SearchService.isAnyTeamActive = $scope.teams.some(function(elem, index, array) {
-                return elem.isActive === true;
-            });
+            SearchService.saveWorkersToService(index);
             $scope.currentActiveTeamIndex = index;
         }
-
-        function deselectAllOtherTeams(index) {
-            angular.forEach($scope.teams, function(team, i) {
-                if(team.isActive && i !== index) {
-                    $scope.teams[i].isActive = false;
-                }
-            });
-        }
-
 
         function initialize() {
             $scope.tabs = SearchService.getTabs();
@@ -67,15 +53,11 @@
         }
 
         $scope.$on('saveTeamMembers', function(event, teamMembers) {
-            $scope.teams[$scope.currentActiveTeamIndex].members = teamMembers;
+            SearchService.saveTeamMembers(teamMembers);
         });
 
         $scope.$on('saveSingleTeamMember', function(event, member) {
-            var alreadyInTeam = SearchService.findItemInArray(member, $scope.teams[$scope.currentActiveTeamIndex].members);
-
-            if (!alreadyInTeam) {
-                $scope.teams[$scope.currentActiveTeamIndex].members.push(member);
-            }
+            SearchService.saveSingleTeamMember(member);
         });
 
         vm.initialize();

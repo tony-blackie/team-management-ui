@@ -12,6 +12,7 @@
 
         factory.workers = [];
         factory.isAnyTeamActive = null;
+        factory.currentActiveTeamIndex = null;
         factory.tabs = [
             {
                 text: "Search",
@@ -112,10 +113,74 @@
             activateTab: activateTab,
             deactivateAllTabs: deactivateAllTabs,
             goToState: goToState,
-            addTeam: addTeam
+            addTeam: addTeam,
+            makeActive: makeActive,
+            deselectAllOtherTeams: deselectAllOtherTeams,
+            saveWorkersToService: saveWorkersToService,
+            saveTeamMembers: saveTeamMembers,
+            saveSingleTeamMember: saveSingleTeamMember,
+            getCurrentActiveTeamIndex: getCurrentActiveTeamIndex,
+            setCurrentActiveTeamIndex: setCurrentActiveTeamIndex,
+            deleteMember: deleteMember,
+            getActiveTeamMembers: getActiveTeamMembers
         });
 
         return factory;
+
+        function deleteMember(index) {
+            factory.teams[factory.currentActiveTeamIndex].members.splice(index, 1);
+        }
+
+        function getActiveTeamMembers(index) {
+            return factory.teams[factory.currentActiveTeamIndex].members;
+        }
+
+        function getCurrentActiveTeamIndex() {
+            return factory.currentActiveTeamIndex;
+        }
+
+        function saveSingleTeamMember(member) {
+            var alreadyInTeam = factory.findItemInArray(member, factory.teams[factory.currentActiveTeamIndex].members);
+
+            if (!alreadyInTeam) {
+                factory.teams[factory.currentActiveTeamIndex].members.push(member);
+            }
+            factory.setWorkers(factory.teams[factory.currentActiveTeamIndex].members);
+        }
+
+        function saveTeamMembers(teamMembers) {
+            factory.teams[factory.currentActiveTeamIndex].members = teamMembers;
+        }
+
+        function makeActive(index) {
+            factory.setCurrentActiveTeamIndex(index);
+            factory.teams[index].isActive = !factory.teams[index].isActive;
+            factory.deselectAllOtherTeams(index);
+            factory.saveWorkersToService(index);
+        }
+
+        function setCurrentActiveTeamIndex(index) {
+            if (factory.currentActiveTeamIndex !== index) {
+                factory.currentActiveTeamIndex = index;
+            } else {
+                factory.currentActiveTeamIndex = null;
+            }
+        }
+
+        function deselectAllOtherTeams(index) {
+            angular.forEach(factory.teams, function(team, i) {
+                if(team.isActive && i !== index) {
+                    factory.teams[i].isActive = false;
+                }
+            });
+        }
+
+        function saveWorkersToService(index) {
+            factory.setWorkers(factory.teams[index].members);
+            factory.isAnyTeamActive = factory.teams.some(function(elem, index, array) {
+                return elem.isActive === true;
+            });
+        }
 
         function addTeam(teamName) {
             var stringContainsSpecialCharacters = false;
