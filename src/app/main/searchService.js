@@ -111,10 +111,32 @@
             getTabs: getTabs,
             activateTab: activateTab,
             deactivateAllTabs: deactivateAllTabs,
-            goToState: goToState
+            goToState: goToState,
+            addTeam: addTeam
         });
 
         return factory;
+
+        function addTeam(teamName) {
+            var stringContainsSpecialCharacters = false;
+            angular.forEach(teamName.split(''), function(char) {
+                if (char.search(/[a-z0-9 ]+/) === -1) {
+                    stringContainsSpecialCharacters = true;
+                }
+            });
+
+            if (!teamName || teamName.length < 1 || stringContainsSpecialCharacters) {
+                return;
+            }
+
+            factory.teams.push(
+                {
+                    name: teamName,
+                    members: [],
+                    isActive: false
+                }
+            );
+        }
 
         function goToState(stateName) {
             $state.go(stateName);

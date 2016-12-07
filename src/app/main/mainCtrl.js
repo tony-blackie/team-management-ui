@@ -29,24 +29,7 @@
         $scope.currentActiveTeamIndex = null;
 
         $scope.addTeam = function() {
-            var stringContainsSpecialCharacters = false;
-            angular.forEach($scope.teamName.split(''), function(char) {
-                if (char.search(/[a-z0-9 ]+/) === -1) {
-                    stringContainsSpecialCharacters = true;
-                }
-            });
-
-            if (!$scope.teamName || $scope.teamName.length < 1 || stringContainsSpecialCharacters) {
-                return;
-            }
-
-            $scope.teams.push(
-                {
-                    name: $scope.teamName,
-                    members: [],
-                    isActive: false
-                }
-            );
+            SearchService.addTeam($scope.teamName);
         };
 
         $scope.makeActive = function(index) {
