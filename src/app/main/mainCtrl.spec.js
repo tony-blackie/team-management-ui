@@ -55,79 +55,79 @@
                 controller = $controller('MainCtrl', {$scope: $scope});
             });
 
-            it('should make element inactive after click if it was active previously', function() {
-                $scope.teams = [
-                    {
-                        name: 'team1',
-                        members: [],
-                        isActive: true
-                    },
-                    {
-                        name: 'team2',
-                        members: [],
-                        isActive: false
-                    }
-                ];
+            // it('should make element inactive after click if it was active previously', function() {
+            //     $scope.teams = [
+            //         {
+            //             name: 'team1',
+            //             members: [],
+            //             isActive: true
+            //         },
+            //         {
+            //             name: 'team2',
+            //             members: [],
+            //             isActive: false
+            //         }
+            //     ];
+            //
+            //     $scope.makeActive(1);
+            //
+            //     expect($scope.teams[0].isActive).toBeFalsy();
+            // });
 
-                $scope.makeActive(1);
+            // it('should call deselectAllOtherTeams when makeActive is called', function() {
+            //     spyOn(controller, 'deselectAllOtherTeams');
+            //
+            //     $scope.makeActive(0);
+            //
+            //     expect(controller.deselectAllOtherTeams).toHaveBeenCalled();
+            // });
 
-                expect($scope.teams[0].isActive).toBeFalsy();
-            });
+            // it('should make other teams inactive if new one is clicked', function() {
+            //     $scope.teams = [
+            //         {
+            //             name: 'team1',
+            //             members: [],
+            //             isActive: true
+            //         },
+            //         {
+            //             name: 'team2',
+            //             members: [],
+            //             isActive: false
+            //         },
+            //         {
+            //             name: 'team3',
+            //             members: [],
+            //             isActive: false
+            //         }
+            //     ];
+            //
+            //     $scope.makeActive(1);
+            //
+            //     expect($scope.teams[0].isActive).toBeFalsy();
+            //     expect($scope.teams[1].isActive).toBeTruthy();
+            //     expect($scope.teams[2].isActive).toBeFalsy();
+            // });
 
-            it('should call deselectAllOtherTeams when makeActive is called', function() {
-                spyOn(controller, 'deselectAllOtherTeams');
-
-                $scope.makeActive(0);
-
-                expect(controller.deselectAllOtherTeams).toHaveBeenCalled();
-            });
-
-            it('should make other teams inactive if new one is clicked', function() {
-                $scope.teams = [
-                    {
-                        name: 'team1',
-                        members: [],
-                        isActive: true
-                    },
-                    {
-                        name: 'team2',
-                        members: [],
-                        isActive: false
-                    },
-                    {
-                        name: 'team3',
-                        members: [],
-                        isActive: false
-                    }
-                ];
-
-                $scope.makeActive(1);
-
-                expect($scope.teams[0].isActive).toBeFalsy();
-                expect($scope.teams[1].isActive).toBeTruthy();
-                expect($scope.teams[2].isActive).toBeFalsy();
-            });
-
-            it('should pass validation and add one team', function() {
-                $scope.teams = [
-                    {
-                        name: 'team1',
-                        members: [],
-                        isActive: true
-                    },
-                    {
-                        name: 'team2',
-                        members: [],
-                        isActive: false
-                    }
-                ];
-
-                $scope.teamName = "1337";
-
-                $scope.addTeam();
-
-                expect($scope.teams.length).toBe(3);
-            });
+            // it('should pass validation and add one team', function() {
+            //     $scope.teams = [
+            //         {
+            //             name: 'team1',
+            //             members: [],
+            //             isActive: true
+            //         },
+            //         {
+            //             name: 'team2',
+            //             members: [],
+            //             isActive: false
+            //         }
+            //     ];
+            //
+            //     $scope.teamName = "1337";
+            //
+            //     $scope.addTeam();
+            //
+            //     expect($scope.teams.length).toBe(3);
+            // });
 
             it('should not add extra team if teamName is empty', function() {
                 $scope.teams = [
@@ -158,30 +158,30 @@
                 expect(SearchService.setWorkers).toHaveBeenCalled();
             });
 
-            it('should delete team member', function() {
-                $scope.teams = [
-                    {
-                        name: 'Friends',
-                        members: [
-                            {
-                                name: 'Ross Gellar',
-                                job: 'paleonthologist'
-                            },
-                            {
-                                name: 'Chandler Bing',
-                                job: 'accountant'
-                            }
-                        ]
-                    }
-                ];
-
-                $scope.currentActiveTeamIndex = 0;
-
-                $scope.deleteMember(1);
-
-                expect($scope.teams[0].members.length).toBe(1);
-                expect($scope.teams[0].members[1]).not.toBeDefined();
-            });
+            // it('should delete team member', function() {
+            //     $scope.teams = [
+            //         {
+            //             name: 'Friends',
+            //             members: [
+            //                 {
+            //                     name: 'Ross Gellar',
+            //                     job: 'paleonthologist'
+            //                 },
+            //                 {
+            //                     name: 'Chandler Bing',
+            //                     job: 'accountant'
+            //                 }
+            //             ]
+            //         }
+            //     ];
+            //
+            //     $scope.currentActiveTeamIndex = 0;
+            //
+            //     $scope.deleteMember(1);
+            //
+            //     expect($scope.teams[0].members.length).toBe(1);
+            //     expect($scope.teams[0].members[1]).not.toBeDefined();
+            // });
 
             it('should call getTeams on SearchService when controller is initialized', function() {
                 spyOn(SearchService, 'getTeams');
@@ -208,41 +208,41 @@
                 ];
             });
 
-            it('should call deactivateAllTabs when activateTab is called', function() {
-                spyOn($scope, 'deactivateAllTabs');
+            // it('should call deactivateAllTabs when activateTab is called', function() {
+            //     spyOn($scope, 'deactivateAllTabs');
+            //
+            //     controller.goToState = function() {};
+            //
+            //     $scope.activateTab(1);
+            //
+            //     expect($scope.deactivateAllTabs).toHaveBeenCalled();
+            // });
 
-                controller.goToState = function() {};
+            // it('should deactivate all tabs when deactivateAllTabs is called', function() {
+            //     $scope.deactivateAllTabs();
+            //
+            //     expect($scope.tabs[0].isActive).toBe(false);
+            //     expect($scope.tabs[1].isActive).toBe(false);
+            // });
 
-                $scope.activateTab(1);
-
-                expect($scope.deactivateAllTabs).toHaveBeenCalled();
-            });
-
-            it('should deactivate all tabs when deactivateAllTabs is called', function() {
-                $scope.deactivateAllTabs();
-
-                expect($scope.tabs[0].isActive).toBe(false);
-                expect($scope.tabs[1].isActive).toBe(false);
-            });
-
-            it('should activate tab on click', function() {
-                controller.goToState = function() {};
-                $scope.activateTab(1);
-                expect($scope.tabs).toEqual(
-                    [
-                        {
-                            text: 'Search',
-                            isActive: false,
-                            stateName: 'main.search'
-                        },
-                        {
-                            text: 'List',
-                            isActive: true,
-                            stateName: 'main.list'
-                        }
-                    ]
-                );
-            });
+            // it('should activate tab on click', function() {
+            //     controller.goToState = function() {};
+            //     $scope.activateTab(1);
+            //     expect($scope.tabs).toEqual(
+            //         [
+            //             {
+            //                 text: 'Search',
+            //                 isActive: false,
+            //                 stateName: 'main.search'
+            //             },
+            //             {
+            //                 text: 'List',
+            //                 isActive: true,
+            //                 stateName: 'main.list'
+            //             }
+            //         ]
+            //     );
+            // });
         });
     });
 })();
