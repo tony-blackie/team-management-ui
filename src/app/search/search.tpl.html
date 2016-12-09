@@ -1,7 +1,7 @@
 <div>
     <div class="search__container" ng-show="tabs[0].isActive">
         <div class="search__search-area" ng-show="isAnyTeamActive">
-            <div class="search__person"
+            <div class="search__person btn btn-default"
                  ng-show="teamMembers.length"
                  ng-repeat="teamMember in teamMembers track by $index"
                  ng-mouseenter="showMemberTooltip($index)"

@@ -1,27 +1,32 @@
-<div class="search__wrapper">
-    <div class="search-tabs">
-        <div ng-repeat="tab in tabs"
-             class="search-tabs__item"
-             ng-click="activateTab($index)"
-             ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
-    </div>
-    <ui-view></ui-view>
-</div>
+<div class="container">
+    <div class="row">
+        <div class="search__wrapper col-md-7">
+            <div class="search-tabs">
+                <div ng-repeat="tab in tabs"
+                     class="search-tabs__item"
+                     ng-click="activateTab($index)"
+                     ng-class="{'search-tabs__item_active': tab.isActive}">{{tab.text}}</div>
+            </div>
+            <ui-view></ui-view>
+        </div>
 
-<div class="team-container">
-    <div class="team-add-team">
-        <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
-        <button class="team-add-button" ng-click="addTeam()">+</button>
-    </div>
-    <div class="team-wrapper" ng-repeat="team in teams track by $index">
-        <div class="team-name"
-             ng-click="makeActive($index)"
-             ng-class="{'team-highlighted': team.isActive}">{{team.name}}</div>
-        <div class="member-wrapper" ng-show="team.isActive">
-            <div class="member" ng-repeat="member in team.members track by $index">
-                <div class="member__item">{{member.name}} - {{member.job}}</div>
-                <div class="member__delete" ng-click="deleteMember($index)">X</div>
+        <div class="team-container col-md-4">
+            <div class="team-add-team">
+                <input class="team-input" ng-model="teamName" placeholder="Add new team" type="text">
+                <button class="team-add-button" ng-click="addTeam()">+</button>
+            </div>
+            <div class="team-wrapper" ng-repeat="team in teams track by $index">
+                <div class="team-name"
+                     ng-click="makeActive($index)"
+                     ng-class="{'team-highlighted': team.isActive}">{{team.name}}</div>
+                <div class="member-wrapper" ng-show="team.isActive">
+                    <div class="member" ng-repeat="member in team.members track by $index">
+                        <div class="member__item">{{member.name}} - {{member.job}}</div>
+                        <div class="member__delete" ng-click="deleteMember($index)">X</div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
+
