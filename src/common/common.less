@@ -189,7 +189,8 @@
 }
 
 .search__refresh {
-  margin: 19px 0 0 5px;
+  margin: 10px 0 0 5px;
+  float: right;
 }
 
 .search__remove {
@@ -204,6 +205,13 @@
   width: 84%;
 }
 
+typeahead {
+  clear: both;
+  display: block;
+  width: 70%;
+  float: left;
+}
+
 .typeahead__wrapper {
   display: inline-block;
   position: relative;
@@ -216,7 +224,7 @@
   margin: 10px 0 0 5px;
   position: absolute;
   border-collapse: collapse;
-  height: 32px;
+  height: 34px;
 }
 
 .typeahead__items {
@@ -225,12 +233,13 @@
   width: 174px;
   position: absolute;
   top: 26px;
-  margin: 19px 0 0 -1px;
+  margin: 19px 0 0 5px;
   border-collapse: collapse;
 }
 
 .typeahead__item {
   clear: both;
+  cursor: pointer;
 }
 
 .search__container_list {
