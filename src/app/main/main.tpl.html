@@ -5,7 +5,9 @@
                 <li ng-repeat="tab in tabs"
                     role="presentation"
                     ng-click="activateTab($index)"
-                    ng-class="{'active': tab.isActive}"><a>{{tab.text}}</a></li>
+                    ng-class="{'active': tab.isActive}">
+                    <a class="search-tabs__link">{{tab.text}}</a>
+                </li>
             </ul>
             <ui-view></ui-view>
         </div>
