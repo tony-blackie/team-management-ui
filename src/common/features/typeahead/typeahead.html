@@ -1,5 +1,9 @@
 <div class="typeahead__wrapper">
-    <input type="text" class="typeahead__input form-control" ng-model="model" placeholder="{{prompt}}" ng-keydown="selected=false" />
+    <input type="text"
+           class="typeahead__input form-control"
+           ng-model="model"
+           placeholder="Type name here"
+           ng-keydown="selected=false" />
     <br/>
 
     <div class="typeahead__items" ng-hide="!model.length || selected">
